@@ -12,7 +12,14 @@
     "eslint-config-next": "13.2.4",
     "next": "13.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-icons": "^4.8.0",
+    "react-kakao-maps-sdk": "^1.1.6",
+    "react-query": "^3.39.3",
+    "recoil": "^0.7.7",
+    "recoil-persist": "^4.2.0",
+    "styled-components": "^5.3.9",
+    "v6": "0.0.0"
   },
   "devDependencies": {
     "eslint": "^8.36.0",
