@@ -6,16 +6,18 @@ const { persistAtom } = recoilPersist()
 export const LoginStatus = atom({
     key:"LoginStatus",
     default:0,
-    effects_UNSTABLE: [persistAtom]
 })
 export const TotalPw = atom({
     key:"TotalPw",
     default:"",
-    effects_UNSTABLE: [persistAtom],
 });
 
-export const TotalId = atom({
-    key:"TotalId",
+export const RegisterInfo = atom({
+    key:"RegisterInfo",
     default:"",
-    effects_UNSTABLE: [persistAtom],
+});
+
+export const RegisterLevel = atom({
+    key:"RegisterLevel",
+    default:0,
 });

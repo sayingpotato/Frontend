@@ -1,7 +1,12 @@
-import { MarkerInfoDiv, PName, PStatus, PAddress, PTime, PCall } from './style'
+import { MarkerInfoDiv, MainDiv, PName, PStatus, InfoValue } from './style'
 import { GiPositionMarker } from 'react-icons/gi'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 import { IoIosCall } from 'react-icons/io'
+
+import Image from 'next/image'
+import position from '@public/images/position.svg'
+import clock from '@public/images/clock.svg'
+import call from '@public/images/call.svg'
 
 const MarkerInformation = (props) => {
   const handleMoreMarkerInfo = () => {
@@ -10,23 +15,41 @@ const MarkerInformation = (props) => {
   return (
     <div onClick={handleMoreMarkerInfo}>
       <MarkerInfoDiv>
-        <div>
+        <MainDiv>
           <PName>{props.info['name']}</PName>
           <PStatus status={props.info['status'] === 'OPEN' ? 'green' : 'red'}>
             {props.info['status'] === 'OPEN' ? '영업중' : '영업 종료'}
           </PStatus>
+        </MainDiv>
+        <div>
+          <Image
+            width={30}
+            height={30}
+            src={position}
+            className="position"
+            alt="position"
+          />
+          <InfoValue>{props.info['address']}</InfoValue>
         </div>
         <div>
-          <GiPositionMarker style={{ display: 'inline-block' }} />
-          <PAddress>{props.info['address']}</PAddress>
+          <Image
+            width={30}
+            height={30}
+            src={clock}
+            className="clock"
+            alt="clock"
+          />
+          <InfoValue>{props.info['time']}</InfoValue>
         </div>
         <div>
-          <AiOutlineClockCircle style={{ display: 'inline-block' }} />
-          <PTime>{props.info['time']}</PTime>
-        </div>
-        <div>
-          <IoIosCall style={{ display: 'inline-block' }} />
-          <PCall>{props.info['call']}</PCall>
+          <Image
+            width={30}
+            height={30}
+            src={call}
+            className="call"
+            alt="call"
+          />
+          <InfoValue>{props.info['call']}</InfoValue>
         </div>
       </MarkerInfoDiv>
     </div>

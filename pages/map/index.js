@@ -1,20 +1,33 @@
 import { useEffect, useState, useRef } from 'react'
 import { Map, MapMarker } from 'react-kakao-maps-sdk'
-import { BiCurrentLocation } from 'react-icons/bi'
 
-import { StyledMapDiv, StyledMap, StyledMapButton, Div } from './style'
+import Image from 'next/image'
+import storeList from '@public/images/storeList.svg'
+import refreshIcon from '@public/images/refresh.svg'
 
-import MarkerInformation from '../../components/markerInfo/index'
+import Router, { useRouter } from 'next/router'
 
-import currentLocation from '../../utils/getCurrentLocation'
+import {
+  StyledMapDiv,
+  StyledMap,
+  StyledMapButton,
+  StyledListButton,
+  ListName,
+  Div,
+} from './style'
+
+import MarkerInformation from '@components/markerInfo'
+import currentLocation from '@utils/getCurrentLocation'
 
 const KaKaoMap = () => {
-  const foodSrc =
-    'https://user-images.githubusercontent.com/44117975/226111201-c9dc37f4-cd7a-49d3-8d18-303852bb996b.png'
-
-  const cafeSrc = 'https://img.lovepik.com/element/40050/4595.png_860.png'
+  const router = useRouter()
 
   const imageSize = { width: 30, height: 30 }
+
+  const foodIcon =
+    'https://user-images.githubusercontent.com/64068511/229500184-32443c06-a211-42ec-b2bd-22db33723f96.svg'
+  const cafeIcon =
+    'https://user-images.githubusercontent.com/64068511/229498035-9dfa6500-7267-4cf4-a5d4-660d55e0db6e.svg'
 
   let data = [
     {
@@ -24,7 +37,7 @@ const KaKaoMap = () => {
 
       value: {
         name: '좋은 원두',
-        address: '충북 청주시',
+        address: '충북 청주시 서원구 1순환로 672번길 64 (우)28643',
         time: '월요일',
         call: '041-271-1234',
         status: 'OPEN',
@@ -39,7 +52,7 @@ const KaKaoMap = () => {
 
       value: {
         name: '좋은 원두111',
-        address: '충북 청주시111',
+        address: '충북 청주시 서원구 1순환로 672번길 64 (우)28643',
         time: '월요일111',
         call: '041-271-12341111',
         status: 'CLOSED',
@@ -53,7 +66,7 @@ const KaKaoMap = () => {
       longitude: 127.486,
       value: {
         name: '좋은 원두222',
-        address: '충북 청주시222',
+        address: '충북 청주시 서원구 1순환로 672번길 64 (우)28643',
         time: '월요일222',
         call: '041-271-122222222211',
         status: 'OPEN',
@@ -96,14 +109,15 @@ const KaKaoMap = () => {
     const info = JSON.parse(e.getTitle())
     setMarkerInfo(info)
   }
-  
+
   const MapResult = data.map((oneData) => {
     return (
       <MapMarker
+        className="marker"
         key={`${oneData.id}`}
         position={{ lat: `${oneData.latitude}`, lng: `${oneData.longitude}` }}
         image={{
-          src: oneData.value['category'] === 'FOOD' ? foodSrc : cafeSrc,
+          src: oneData.value['category'] === 'FOOD' ? foodIcon : cafeIcon,
           size: imageSize,
         }}
         opacity={oneData.value['discountInfo'] === 'TODAY_DISCOUNT' ? 1 : 0.5}
@@ -141,6 +155,13 @@ const KaKaoMap = () => {
     setOpenPopUp(false)
   }
 
+  const markerInfoClick = () => {
+    router.push({
+      pathname: '/storelist',
+      query: { lat: center['lat'], lng: center['lng'] },
+    })
+  }
+
   return (
     <StyledMapDiv>
       <StyledMap
@@ -153,8 +174,24 @@ const KaKaoMap = () => {
         {MapResult}
       </StyledMap>
       <StyledMapButton onClick={refreshButtonClick} state={openPopUp}>
-        <BiCurrentLocation size={40} />
+        <Image
+          width={30}
+          height={30}
+          src={refreshIcon}
+          className="refreshIcon"
+          alt="refreshIcon"
+        />
       </StyledMapButton>
+      <StyledListButton onClick={markerInfoClick} state={openPopUp}>
+        <Image
+          width={30}
+          height={30}
+          src={storeList}
+          className="storeListIcon"
+          alt="sotreListIcon"
+        />
+        <ListName>가게 보기</ListName>
+      </StyledListButton>
       <Div state={openPopUp}>
         <MarkerInformation info={markerInfo} />
       </Div>
