@@ -135,6 +135,7 @@ const StoreList = () => {
   const goMapButtonClick = () => {
     router.push({
       pathname: '/map',
+      query: { goBackLat: routerValue[0], goBackLng: routerValue[1] },
     })
   }
 

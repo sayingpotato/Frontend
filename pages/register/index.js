@@ -7,7 +7,9 @@ const Register = ({children}) => {
   return (
     <>
       <Back/>
-        <SignUp/>
+        <SignUp 
+          title={'SIGN UP'}
+          subTitle={'감자가 되어봅시다!'}/>
           <Level/>
           <Line/>
           {children}

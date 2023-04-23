@@ -3,13 +3,13 @@ import {
     TitleTop, 
     TitleUnder } from "./style"
 
-export default function SignUp(){
+export default function SignUp({title, subTitle}){
     return (
         <>
             <SignUpComponent>
-                <TitleTop>SIGN UP</TitleTop>
+                <TitleTop>{title}</TitleTop>
                 <TitleUnder>
-                    <div className='description'>감자가 되어봅시다!</div>
+                    <div className='description'>{subTitle}</div>
                     <div className='logo'>감자입니다</div>
                 </TitleUnder>
             </SignUpComponent>

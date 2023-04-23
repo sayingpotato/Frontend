@@ -22,6 +22,8 @@ import currentLocation from '@utils/getCurrentLocation'
 const KaKaoMap = () => {
   const router = useRouter()
 
+  const goBackrouterValue = [router['query']['goBackLat'], router['query']['goBackLng']]
+  
   const imageSize = { width: 30, height: 30 }
 
   const foodIcon =
@@ -78,8 +80,13 @@ const KaKaoMap = () => {
 
   const mapRef = useRef()
 
+  // 현 위치 (최초 useEffect 함수 또는 새로고침 버튼)
   const [currentCenter, setCurrentCenter] = useState({ lat: 0, lng: 0 })
+  // 지도의 중심 값 (최초에는 현 위치를 기준 -> 지도를 움직일 때마다 변경 또는 마커를 클릭할 때 변경)
   const [center, setCenter] = useState({ lat: 0, lng: 0 })
+  // 라우터 중심값
+  const [routerCenter, setRouterCenter] = useState({ lat: goBackrouterValue[0], lng: goBackrouterValue[1] })
+
   const [markerInfo, setMarkerInfo] = useState({
     name: '',
     address: '',
@@ -142,12 +149,16 @@ const KaKaoMap = () => {
 
   useEffect(() => {
     setCenter({
-      lat: currentCenter.lat,
-      lng: currentCenter.lng,
+      lat: routerCenter.lat === undefined ? currentCenter.lat : routerCenter.lat,
+      lng: routerCenter.lng === undefined ? currentCenter.lng : routerCenter.lng,
     })
-  }, [currentCenter.lat, currentCenter.lng])
+  }, [currentCenter.lat, currentCenter.lng, routerCenter.lat, routerCenter.lng])
 
   const refreshButtonClick = () => {
+    setRouterCenter({
+      lat: undefined,
+      lng: undefined,
+    })
     setCurrentCenter({
       lat: 0,
       lng: 0,
@@ -155,7 +166,7 @@ const KaKaoMap = () => {
     setOpenPopUp(false)
   }
 
-  const markerInfoClick = () => {
+  const storeListClick = () => {
     router.push({
       pathname: '/storelist',
       query: { lat: center['lat'], lng: center['lng'] },
@@ -170,6 +181,10 @@ const KaKaoMap = () => {
         onClick={() => {
           setOpenPopUp(false)
         }}
+        onDragEnd={(map) => setCenter({
+          lat: map.getCenter().getLat(),
+          lng: map.getCenter().getLng(),
+        })}
       >
         {MapResult}
       </StyledMap>
@@ -182,7 +197,7 @@ const KaKaoMap = () => {
           alt="refreshIcon"
         />
       </StyledMapButton>
-      <StyledListButton onClick={markerInfoClick} state={openPopUp}>
+      <StyledListButton onClick={storeListClick} state={openPopUp}>
         <Image
           width={30}
           height={30}

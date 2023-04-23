@@ -35,7 +35,7 @@ const InputSpace = styled.input`
     height: 48px;
     width: 98%;
     &:focus-visible {
-        font-family: 'Pretendard Variable'
+        font-family: 'Pretendard Variable';
         outline : none;
         font-weight: 600;
     }

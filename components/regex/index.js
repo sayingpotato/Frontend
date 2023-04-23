@@ -9,7 +9,10 @@ import {
     isSpecialCharacter,
     isKoreanEnglish } from "@hooks/regex";
 import { useEffect, useState } from "react";
-import { ID_LENGTH, PW_LENGTH, NickName_LENGTH } from "@constants/register";
+import { 
+    ID_LENGTH, 
+    PW_LENGTH, 
+    NickName_LENGTH } from "@constants/register";
 
 export default function Regex(props){
     const [isValid, setIsValid] = useState(false);
