@@ -6,7 +6,7 @@ import AuthButton from '@components/authButton/index'
 import right from '@public/images/checkCircle.svg'
 import Image from 'next/image'
 import Next from '@components/next'
-import { RegisterLevel } from '@utils/atom.js'
+import { RegisterLevel } from '@utils/recoil/atom.js'
 import { useSetRecoilState } from 'recoil'
 import Label from '@components/label'
 

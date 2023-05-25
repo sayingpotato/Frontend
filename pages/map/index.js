@@ -1,22 +1,16 @@
 import { useEffect, useState, useRef } from 'react'
 import { Map, MapMarker } from 'react-kakao-maps-sdk'
 
-import Image from 'next/image'
-import storeList from '@public/images/storeList.svg'
-import refreshIcon from '@public/images/refresh.svg'
-
 import Router, { useRouter } from 'next/router'
+
+import MapButtons from '@organisms/mapButtons'
+import MarkerContent from '@organisms/markerContent'
 
 import {
   StyledMapDiv,
   StyledMap,
-  StyledMapButton,
-  StyledListButton,
-  ListName,
-  Div,
 } from './style'
 
-import MarkerInformation from '@components/markerInfo'
 import currentLocation from '@utils/getCurrentLocation'
 
 const KaKaoMap = () => {
@@ -38,6 +32,7 @@ const KaKaoMap = () => {
       longitude: 127.456,
 
       value: {
+        id: 1,
         name: '좋은 원두',
         address: '충북 청주시 서원구 1순환로 672번길 64 (우)28643',
         time: '월요일',
@@ -53,6 +48,7 @@ const KaKaoMap = () => {
       longitude: 127.436,
 
       value: {
+        id: 2,
         name: '좋은 원두111',
         address: '충북 청주시 서원구 1순환로 672번길 64 (우)28643',
         time: '월요일111',
@@ -67,6 +63,7 @@ const KaKaoMap = () => {
       latitude: 36.6283,
       longitude: 127.486,
       value: {
+        id: 3,
         name: '좋은 원두222',
         address: '충북 청주시 서원구 1순환로 672번길 64 (우)28643',
         time: '월요일222',
@@ -88,6 +85,7 @@ const KaKaoMap = () => {
   const [routerCenter, setRouterCenter] = useState({ lat: goBackrouterValue[0], lng: goBackrouterValue[1] })
 
   const [markerInfo, setMarkerInfo] = useState({
+    id : '',
     name: '',
     address: '',
     time: '',
@@ -116,23 +114,6 @@ const KaKaoMap = () => {
     const info = JSON.parse(e.getTitle())
     setMarkerInfo(info)
   }
-
-  const MapResult = data.map((oneData) => {
-    return (
-      <MapMarker
-        className="marker"
-        key={`${oneData.id}`}
-        position={{ lat: `${oneData.latitude}`, lng: `${oneData.longitude}` }}
-        image={{
-          src: oneData.value['category'] === 'FOOD' ? foodIcon : cafeIcon,
-          size: imageSize,
-        }}
-        opacity={oneData.value['discountInfo'] === 'TODAY_DISCOUNT' ? 1 : 0.5}
-        onClick={handleMarkerClick}
-        title={JSON.stringify(oneData.value)}
-      />
-    )
-  })
 
   useEffect(() => {
     currentLocation()
@@ -186,30 +167,24 @@ const KaKaoMap = () => {
           lng: map.getCenter().getLng(),
         })}
       >
-        {MapResult}
+        {data.map((oneData) => (
+          <MapMarker 
+            className="marker"
+            key={`${oneData.id}`}
+            position={{ lat: `${oneData.latitude}`, lng: `${oneData.longitude}` }}
+            image={{
+              src: oneData.value['category'] === 'FOOD' ? foodIcon : cafeIcon,
+              size: imageSize,
+            }}
+            opacity={oneData.value['discountInfo'] === 'TODAY_DISCOUNT' ? 1 : 0.5}
+            onClick={handleMarkerClick}
+            title={JSON.stringify(oneData.value)}
+          />
+        ))}
       </StyledMap>
-      <StyledMapButton onClick={refreshButtonClick} state={openPopUp}>
-        <Image
-          width={30}
-          height={30}
-          src={refreshIcon}
-          className="refreshIcon"
-          alt="refreshIcon"
-        />
-      </StyledMapButton>
-      <StyledListButton onClick={storeListClick} state={openPopUp}>
-        <Image
-          width={30}
-          height={30}
-          src={storeList}
-          className="storeListIcon"
-          alt="sotreListIcon"
-        />
-        <ListName>가게 보기</ListName>
-      </StyledListButton>
-      <Div state={openPopUp}>
-        <MarkerInformation info={markerInfo} />
-      </Div>
+
+      <MapButtons state={openPopUp} refreshButtonClick={refreshButtonClick} storeListClick={storeListClick} />
+      <MarkerContent state={openPopUp} info={markerInfo} />
     </StyledMapDiv>
   )
 }

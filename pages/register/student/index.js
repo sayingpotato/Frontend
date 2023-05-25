@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import Register from "@pages/register";
-import { RegisterLevel } from "@utils/atom.js";
+import { RegisterLevel } from "@utils/recoil/atom.js";
 import { useSetRecoilState} from "recoil";
 import Label from "@components/label";
 import { InfoComponent } from '@pages/register/info/id/style';

@@ -13,7 +13,7 @@ export default function Navbar({ children }) {
     { image: todayDiscount, title: '오늘의 할인', next: 'todaydiscount' },
     { image: map, title: '할인 지도', next: 'map' },
     { image: orderedList, title: '주문 내역', next: 'order' },
-    { image: potato, title: '마이 페이지', next: 'myPage' },
+    { image: potato, title: '마이 페이지', next: 'mypage' },
   ]
   return (
     <>

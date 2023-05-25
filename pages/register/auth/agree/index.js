@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Next from "@components/next";
 import Label from "@components/label";
 import {AgreeComponent, OneAgree} from "./style"
-import { RegisterLevel } from "@utils/atom.js"
+import { RegisterLevel } from "@utils/recoil/atom.js"
 import { useSetRecoilState} from "recoil"
 
 const Agree = () => {

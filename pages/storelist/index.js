@@ -2,24 +2,9 @@ import { useRef, useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Router, { useRouter } from 'next/router'
 
-import Title from '@components/title'
-import StorelistImage from '@components/storelistImage'
-import StorelistMenu from '@components/storelistMenu'
-import StorelistReview from '@components/storelistReview'
+import StorelistTemplate from '@templates/storelistTemplate'
 
-import Image from 'next/image'
-import map from '@public/images/whiteMap.svg'
-
-import {
-  DataDiv,
-  TitleDiv,
-  StoreName,
-  DiscountDiv,
-  StoreMin,
-  StoreMax,
-  ContentDiv,
-  StyledMapButton,
-} from './style'
+import Title from "@molecules/title"
 
 const StoreList = () => {
   const animate = {
@@ -60,7 +45,7 @@ const StoreList = () => {
     },
     {
       id: 2,
-      name: '좋은 원두',
+      name: '좋은 원두2222',
       maxValue: '25%',
       minValue: '15%',
       images: {
@@ -83,7 +68,7 @@ const StoreList = () => {
     },
     {
       id: 3,
-      name: '좋은 원두',
+      name: '좋은 원두333',
       maxValue: '25%',
       minValue: '15%',
       images: {
@@ -107,37 +92,7 @@ const StoreList = () => {
     },
   ]
 
-  const StoreInfoResult = data.map((oneData) => {
-    return (
-      <DataDiv key={`${oneData.id}`}>
-        <StorelistImage imageSrc={JSON.stringify(oneData.images)} />
-        <TitleDiv>
-          <StoreName>{`${oneData.name}`}</StoreName>
-          <DiscountDiv>
-            <StoreMin>{`${oneData.minValue}`}</StoreMin>
-            <StoreMax>{`${oneData.maxValue}`}</StoreMax>
-          </DiscountDiv>
-        </TitleDiv>
-        <ContentDiv>
-          <StorelistMenu menu={JSON.stringify(oneData.topMenu)} />
-          <StorelistReview review={JSON.stringify(oneData.topReview)} />
-        </ContentDiv>
-      </DataDiv>
-    )
-  })
-
   const router = useRouter()
-  const routerValue = [router['query']['lat'], router['query']['lng']]
-
-  // map에서 중심 값을 통하여 정렬 받을 예정
-  console.log(routerValue)
-
-  const goMapButtonClick = () => {
-    router.push({
-      pathname: '/map',
-      query: { goBackLat: routerValue[0], goBackLng: routerValue[1] },
-    })
-  }
 
   return (
     <>
@@ -148,19 +103,17 @@ const StoreList = () => {
           animate={animate.animate}
           exit={animate.exit}
         >
-          <Title>내 주변 가게</Title>
-          <div>
-            {StoreInfoResult}
-            <StyledMapButton onClick={goMapButtonClick}>
-              <Image
-                width={30}
-                height={30}
-                src={map}
-                className="map"
-                alt="map"
-              />
-            </StyledMapButton>
-          </div>
+          <>
+            <Title text="내 주변 가게"/>
+            {data.map((oneData) => (
+              <StorelistTemplate key={`${oneData.id}`} 
+                storeName={`${oneData.name}`} 
+                imageSrc={JSON.stringify(oneData.images)} 
+                minDiscount={`${oneData.minValue}`}
+                maxDisount={`${oneData.maxValue}`}
+                />
+            ))}
+          </>
         </motion.div>
       </AnimatePresence>
     </>

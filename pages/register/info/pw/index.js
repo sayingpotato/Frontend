@@ -7,7 +7,7 @@ import Next from '@components/next'
 import wrong from '@public/images/close.svg'
 import right from '@public/images/checkCircle.svg'
 import empty from '@public/images/emptyBlock.svg'
-import { RegisterLevel } from '@utils/atom.js'
+import { RegisterLevel } from '@utils/recoil/atom.js'
 import { useSetRecoilState } from 'recoil'
 import Label from '@components/label'
 

@@ -3,7 +3,7 @@ import {
     BigLevel, 
     SmallLevel } from "./style"
 import {DETAIL_TOTAL_LEVEL} from '@constants/register.js'
-import { RegisterLevel } from "@utils/atom.js"
+import { RegisterLevel } from "@utils/recoil/atom.js"
 import { useRecoilState} from "recoil"
 import { useEffect, useState } from "react";
 

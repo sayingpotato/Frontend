@@ -1,7 +1,7 @@
 import { NextComponent } from "./style"
 import router from "next/router";
 import { useRecoilState } from "recoil";
-import {RegisterInfo} from "@utils/atom"
+import {RegisterInfo} from "@utils/recoil/atom"
 
 export default function Next({ state, input, nextView}){
     const [registerInfo, setRegisterInfo] = useRecoilState(RegisterInfo);

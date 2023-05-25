@@ -1,20 +1,12 @@
 import { useEffect, useState, useRef } from 'react'
 
 import date from '@utils/date'
-import Title from '@components/title'
-import DiscountTable from '@components/discountTable'
 
-import {
-  InfoDiv,
-  TypeButtonDiv,
-  TypeFoodButton,
-  TypeCafeButton,
-  DayInfoDiv,
-  NotNowDay,
-  NowDay,
-  BackDiv,
-  WholeDiv,
-} from './style'
+import Title from '@molecules/title'
+import TodayDiscountHeader from '@organisms/todayDiscountHeader'
+import TodayDiscountTemplate from '@templates/todayDiscountTemplate'
+
+import { ContentWholeDiv, ContentDiv } from './style';
 
 const TodayDiscount = () => {
   const [nowDay, setNowDay] = useState('')
@@ -103,24 +95,21 @@ const TodayDiscount = () => {
     },
   ]
 
+  const discountTable = (oneData, index) => {
+    return (
+      <TodayDiscountTemplate
+        className={index === data.length - 1 ? 'last' : ''}
+        key={`${oneData.id}`}
+        data={`${JSON.stringify(oneData.value)}`}
+      ></TodayDiscountTemplate>
+    )
+  }
+  
   const CafeArr = data.map((oneData, index) => {
-    return oneData.type === 'cafe' ? (
-      <DiscountTable
-        className={index === data.length - 1 ? 'last' : ''}
-        key={`${oneData.id}`}
-        data={`${JSON.stringify(oneData.value)}`}
-      ></DiscountTable>
-    ) : null
+    return oneData.type === 'cafe' &&  discountTable(oneData, index)
   })
-
   const FoodArr = data.map((oneData, index) => {
-    return oneData.type === 'food' ? (
-      <DiscountTable
-        className={index === data.length - 1 ? 'last' : ''}
-        key={`${oneData.id}`}
-        data={`${JSON.stringify(oneData.value)}`}
-      ></DiscountTable>
-    ) : null
+    return oneData.type === 'food' &&  discountTable(oneData, index)
   })
 
   const typeFoodClick = (e) => {
@@ -133,25 +122,14 @@ const TodayDiscount = () => {
 
   return (
     <>
-      <Title>오늘의 할인</Title>
-      <InfoDiv>
-        <TypeButtonDiv>
-          <TypeFoodButton state={clickValue} onClick={typeFoodClick}>
-            식당
-          </TypeFoodButton>
-          <TypeCafeButton state={clickValue} onClick={typeCafeClick}>
-            카페
-          </TypeCafeButton>
-        </TypeButtonDiv>
-        <DayInfoDiv>
-          <NotNowDay>{`${prevDay}`}</NotNowDay>
-          <NowDay>{`${nowDay}`}</NowDay>
-          <NotNowDay>{`${nextDay}`}</NotNowDay>
-        </DayInfoDiv>
-      </InfoDiv>
-      <BackDiv>
-        <WholeDiv>{`${clickValue}` === 'cafe' ? CafeArr : FoodArr}</WholeDiv>
-      </BackDiv>
+      <Title text="오늘의 할인"/>
+      <TodayDiscountHeader FoodOnClick={typeFoodClick} CafeOnClick={typeCafeClick} 
+        state={clickValue}
+        prevDay={`${prevDay}`} nowDay={`${nowDay}`} nextDay={`${nextDay}`}
+        />
+      <ContentWholeDiv>
+        <ContentDiv>{`${clickValue}` === 'cafe' ? CafeArr : FoodArr}</ContentDiv>
+      </ContentWholeDiv>
     </>
   )
 }
