@@ -73,6 +73,26 @@ const StyledText = styled.p`
     font-size: 12px;
     font-weight: 500;
   }
+
+  &.mypageMoneyTotal {
+    font-size : 12px;
+    color : white;
+    font-weight : 800;
+  }
+
+  &.mypageMoneyTitle {
+    font-size : 12px;
+    color : white;
+    font-weight : 800;
+    margin-left : 30px;
+    margin-bottom : 0px;
+  }
+
+  &.mypageUserName {
+    font-size : 30px;
+    font-weight : 800;
+    color : white;
+  }
 `
 
 export { StyledText };
