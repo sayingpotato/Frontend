@@ -6,9 +6,9 @@ import DayInfo from "@organisms/dayInfo"
 const TodayDiscountHeader = ({FoodOnClick, CafeOnClick, state, prevDay, nowDay, nextDay}) => {
     return (
         <TodayDiscountHeaderDiv>
-            <InlineButton text1="식당" text2="카페" 
-                text1ClassName="typeCafeButton" text2ClassName="typeFoodButton"
-                text1OnClick={FoodOnClick} text2OnClick={CafeOnClick}
+            <InlineButton textOne="식당" textTwo="카페" 
+                textOneClassName="typeCafeButton" textTwoClassName="typeFoodButton"
+                textOneOnClick={FoodOnClick} textTwoOnClick={CafeOnClick}
                 state={state}
                 divClassName="center"
             />

@@ -63,6 +63,12 @@ const StyledButton = styled.button`
     align-items: center;
   }
 
+  &.mypageButtons {
+    height : 8vh;
+    border : 1px solid #999999;
+    border-radius : 5px;
+    background-color : white;
+  }
 `
 
 export { StyledButton };

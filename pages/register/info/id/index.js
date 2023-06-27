@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Register from '@pages/register'
 import { InfoComponent, InputSpace, RegexComponent } from './style'

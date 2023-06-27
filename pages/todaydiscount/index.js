@@ -6,15 +6,15 @@ import Title from '@molecules/title'
 import TodayDiscountHeader from '@organisms/todayDiscountHeader'
 import TodayDiscountTemplate from '@templates/todayDiscountTemplate'
 
+import useGetDailyDiscountStore from '@hooks/useGetDailyDiscountStoreList';
 import { ContentWholeDiv, ContentDiv } from './style';
 
 const TodayDiscount = () => {
   const [nowDay, setNowDay] = useState('')
   const [prevDay, setPrevDay] = useState('')
   const [nextDay, setNextDay] = useState('')
-
   const [clickValue, setClickValue] = useState('food')
-
+  const [datas, setData] = useState(null);  
   const days = [
     '일요일',
     '월요일',
@@ -23,13 +23,25 @@ const TodayDiscount = () => {
     '목요일',
     '금요일',
     '토요일',
-  ]
+  ];
+
+  const days2 = [
+    'SUN', 'MON','TUE', 'MON', 'THU', 'FRI', 'SAT'
+  ];
+
+  const englishDay = days2[days.indexOf(nowDay)];
+  const getDailyDiscountStore = useGetDailyDiscountStore(englishDay);
+  const dates = date();
 
   useEffect(() => {
-    setNowDay(date())
+    setData(getDailyDiscountStore);
+  }, [dates])
 
-    const idx = days.indexOf(date())
+  useEffect(() => {  
+    setNowDay(dates)
 
+    const idx = days.indexOf(dates)
+    
     if (idx === 0) {
       setPrevDay('토요일')
       setNextDay(days[idx + 1])
@@ -42,7 +54,7 @@ const TodayDiscount = () => {
       setNextDay(days[idx + 1])
       setPrevDay(days[idx - 1])
     }
-  }, [date()])
+  }, [dates])
 
   let data = [
     {
@@ -123,6 +135,13 @@ const TodayDiscount = () => {
   return (
     <>
       <Title text="오늘의 할인"/>
+      <div>
+        {datas && datas.map((item, index) => {
+          return (
+            <div key = {index}>{item.name}</div>
+          )
+        })}
+      </div>
       <TodayDiscountHeader FoodOnClick={typeFoodClick} CafeOnClick={typeCafeClick} 
         state={clickValue}
         prevDay={`${prevDay}`} nowDay={`${nowDay}`} nextDay={`${nextDay}`}

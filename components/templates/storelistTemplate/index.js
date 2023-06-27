@@ -9,7 +9,7 @@ const StorelistTemplate = ({storeName, imageSrc, minDiscount, maxDisount}) => {
     const routerValue = [router['query']['lat'], router['query']['lng']]
 
     // map에서 중심 값을 통하여 정렬 받을 예정
-    console.log(routerValue)
+    // console.log(routerValue)
 
     const goMapButtonClick = () => {
         router.push({

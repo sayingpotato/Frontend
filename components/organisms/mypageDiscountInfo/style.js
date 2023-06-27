@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
 const MypageDiscountInfoDiv = styled.div`
-    background-color : #EFEFEF;
-    padding : 20px 30px 20px 30px;
-    height : 80vh;
-    gap : 10px;
-    display: flex;
-    flex-direction: column;
+    border : 1px solid #999999;
+    border-radius : 10px;
+    background-color : white;
 `
 
-export { MypageDiscountInfoDiv };
+const DiscountContentWhole = styled.div`
+    display : flex;
+    flex-wrap: wrap;
+    padding-left : 20px;
+    padding-right : 20px;
+`
+
+export { MypageDiscountInfoDiv, DiscountContentWhole };

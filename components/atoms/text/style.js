@@ -40,8 +40,8 @@ const StyledText = styled.p`
   }
 
   &.reviewName {
-    font-size: 13px;
-    font-weight: 700;
+    font-size: 8px;
+    font-weight: 500;
   }
 
   &.todayDiscountLogoName {
@@ -84,8 +84,8 @@ const StyledText = styled.p`
     font-size : 12px;
     color : white;
     font-weight : 800;
-    margin-left : 30px;
     margin-bottom : 0px;
+    margin-left : 25px;
   }
 
   &.mypageUserName {
@@ -93,6 +93,57 @@ const StyledText = styled.p`
     font-weight : 800;
     color : white;
   }
+
+  &.storeDetailMenuTitle {
+    font-size : 8px;
+    font-weight : 500;
+  }
+
+  &.storeDetailMiniTitle {
+    font-size : 12px;
+    font-weight : 600;
+  }
+
+  &.storeDetailInfo {
+    font-size : 10px;
+  }
+
+  &.storeDetailPrice {
+    font-size : 8px;
+    color : #8C0909;
+    font-weight : 500;
+  }
+
+  &.storeDetailReviewTotal {
+    font-size : 8px;
+    color : #28469C;
+    font-weight : 500;
+  }
+
+  &.mypageButtonsName {
+    font-size : 15px;
+    font-weight : 800;
+    color : black;
+  }
+
+  &.mypageButtonsLogoutName {
+    font-size : 15px;
+    font-weight : 800;
+    color : red;
+  }
+  
+  &.discountContentName {
+    font-size:10px;
+    font-weight : 500;
+    margin-bottom : 1px;
+  }
+
+  &.discountContentMoney {
+    font-size:10px;
+    font-weight : 500;
+    margin-top : 1px;
+  }
+
 `
 
 export { StyledText };

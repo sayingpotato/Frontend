@@ -1,17 +1,39 @@
-const getDailyDiscountStore = () => {
+import { storeApi } from "api"
 
+const getDailyDiscountStore = async(date) => {
+    try {
+        const data = await storeApi.getDailyDiscountStore(date);
+        return data;
+    } catch (error) {
+        throw error;
+    }
 }
 
-const getMapStoreList = () => {
-
+const getMapStoreList = async(latitude, longtitude) => {
+    try {
+        const data = await storeApi.getMapStoreList(latitude, longtitude);
+        return data;
+    } catch (error) {
+        throw error;
+    }
 }
 
-const getStoreDetail = () => {
-
+const getStoreDetail = async(id) => {
+    try {
+        const data = await storeApi.getStoreDetail(id);
+        return data;
+    } catch (error) {
+        throw error;
+    }
 }
 
-const getSurroundStoreList = () => {
-
+const getSurroundStoreList = async(latitude, longtitude) => {
+    try {
+        const data = await storeApi.getSurroundStoreList(latitude, longtitude);
+        return data;
+    } catch (error) {
+        throw error;
+    }
 }
 
 const storeService = {

@@ -1,28 +1,46 @@
 import { NextComponent } from "./style"
 import router from "next/router";
 import { useRecoilState } from "recoil";
-import {RegisterInfo} from "@utils/recoil/atom"
+import {RegisterInfo, StudentCard} from "@utils/recoil/atom";
+import useSubmitRegister from "@hooks/useSubmitRegister";
+import { useEffect, useState } from "react";
+import useSubmitStudentCard from "@hooks/useSubmitStudentCard";
 
 export default function Next({ state, input, nextView}){
     const [registerInfo, setRegisterInfo] = useRecoilState(RegisterInfo);
+    const [imageSource, setImageSource] = useRecoilState(StudentCard);
+    const submit = useSubmitRegister();
+    const submitStudentCard = useSubmitStudentCard(imageSource);
+    const [post, setPost] = useState(0);
+
+    useEffect(() => {
+        if (post) {
+            submit();
+        };
+    },[post])
+
     const onClickNextButton = () => {
         if (state === 2){
             switch (nextView) {
-                case "agree": setRegisterInfo({auth : true})
-                              router.push(`/register/auth/${nextView}`)
+                case "agree": router.push(`/register/auth/${nextView}`)
                               break;
-                case "id":  setRegisterInfo({...registerInfo, agree : true})
-                            router.push(`/register/info/${nextView}`)
+                case "id":   router.push(`/register/info/${nextView}`)
                             break;
-                case "pw": setRegisterInfo({...registerInfo, id : input})
+                case "pw": setRegisterInfo({...registerInfo, loginId : input})
                            router.push(`/register/info/${nextView}`)
                            break;
-                case "nickname" : setRegisterInfo({...registerInfo, pw : input})
+                case "nickname" : setRegisterInfo({...registerInfo, password : input})
                                   router.push(`/register/info/${nextView}`)
                                   break;
                 case "student" : setRegisterInfo({...registerInfo, nickname : input})
-                                 router.push(`/register/student`)
+                                 setPost(post + 1);
+                                 router.push(`/login`)
                                  break;
+                case "login" :  
+                console.log(typeof(input)) 
+                                submitStudentCard()
+                                router.push(`/login`)
+                                break;
             }
         }
     }

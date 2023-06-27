@@ -1,8 +1,8 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, cloneElement } from 'react'
 import { Map, MapMarker } from 'react-kakao-maps-sdk'
 
 import Router, { useRouter } from 'next/router'
-
+import useGetMapStoreList from '@hooks/useGetMapStoreList';
 import MapButtons from '@organisms/mapButtons'
 import MarkerContent from '@organisms/markerContent'
 
@@ -153,9 +153,22 @@ const KaKaoMap = () => {
       query: { lat: center['lat'], lng: center['lng'] },
     })
   }
+  
+  //백엔드의 response 데이터
+  const [datas, setData] = useState(null);
+  const getMapStoreList = useGetMapStoreList(center.lat, center.lng);
+
+  useEffect(() => {
+    setData(getMapStoreList);
+  },[getMapStoreList]);
 
   return (
     <StyledMapDiv>
+      {datas && datas.map((item, index) => {
+        return (
+          <div key = {index}>{item.markerInfo.category}</div>
+        )
+      })}
       <StyledMap
         center={center}
         ref={mapRef}

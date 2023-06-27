@@ -9,7 +9,7 @@ const MapButtons = ({state, refreshButtonClick, storeListClick}) => {
         <>
             <ImageButton className="refreshButton" src="images/refresh.svg" alt="images/refresh.svg" onClick={refreshButtonClick} state={state}/>
             <Button className="mapListButton" state={state} onClick={storeListClick}>
-                <ImageText src="images/storeList.svg" alt="images/storeList.svg" text="가게 보기" TextClass="mapListName" />
+                <ImageText divClassName="basic" src="images/storeList.svg" alt="images/storeList.svg" text="가게 보기" textClassName="mapListName" />
             </Button>
         </>
     );

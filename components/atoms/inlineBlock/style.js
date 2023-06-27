@@ -9,6 +9,7 @@ const StyledInlineBlock = styled.div`
     background-color: #eaf2ff;
     border-radius: 4px;
     height: 25px;
+    width : 100%;
   }
 
   &.oneInside {
@@ -38,6 +39,56 @@ const StyledInlineBlock = styled.div`
     padding: 0 0 0 5%;
     border-radius: 4px;
     width: 60%;
+    height: 25px;
+  }
+
+  &.visitorReviewOutside {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2%;
+    background-color: #eaf2ff;
+    border-radius: 4px;
+    height: 25px;
+    width : 100%;
+  }
+
+  &.oneVisitorReviewInside {
+    background-color: #4f79f1;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 5%;
+    border-radius: 4px;
+    width: 60%;
+    height: 25px;
+  }
+
+  &.twoVisitorReviewInside {
+    background-color: #6C92FF;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 5%;
+    border-radius: 4px;
+    width: 50%;
+    height: 25px;
+  }
+
+  &.threeVisitorReviewInside {
+    background-color: #A3BAFF;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 5%;
+    border-radius: 4px;
+    width: 40%;
+    height: 25px;
+  }
+
+  &.fourVisitorReviewInside {
+    background-color: #DAE3FF;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 5%;
+    border-radius: 4px;
+    width: 30%;
     height: 25px;
   }
 `

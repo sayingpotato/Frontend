@@ -1,14 +1,26 @@
 import axios from "axios";
-import APP_HOST from "@constants/api.constants";
+import { NEXT_PUBLIC_HOST } from "@constants/api.constants";
+import { getCookie } from "@utils/cookie";
 
 const fetcher = axios.create({
-    baseURL : APP_HOST,
+    baseURL : NEXT_PUBLIC_HOST,
     timeout: 2500
 })
 
-//권한이 필요한 api가 생길 시 추가 
 fetcher.interceptors.request.use((config) => {
-    return config;
-})
+    const accessToken = getCookie('accessToken');
+    
+    if (accessToken === undefined) return config;
 
+    const newConfing = {
+        ...config,
+        headers: {
+          ...config.headers,
+          Authorization: `Bearer ${accessToken}`,
+        },
+    }
+    return newConfing;
+});
+    
 export default fetcher;
+

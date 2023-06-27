@@ -1,26 +1,17 @@
 import { useState, useRef, useEffect } from "react";
 import Register from "@pages/register";
-import { RegisterLevel } from "@utils/recoil/atom.js";
-import { useSetRecoilState} from "recoil";
+import {RegisterLevel, StudentCard} from "@utils/recoil/atom";
+import { useRecoilState, useSetRecoilState} from "recoil";
 import Label from "@components/label";
 import { InfoComponent } from '@pages/register/info/id/style';
 import Image from "next/image";
 import preview from '@public/images/studentPreview.svg'
 import Next from "@components/next";
 
-College.Layout = ({ children }) => {
-    return (
-       <div>
-        {children}
-       </div>
-    );
-};
-  
-College.Layout.displayName = 'RegisterLayout';
 export default function College(){
-    const setRegisterLevel = useSetRecoilState(RegisterLevel)
+    const setRegisterLevel = useSetRecoilState(RegisterLevel);
     const [state, setState] = useState(0);
-    const [imageSource, setImageSource] = useState(0);
+    const [imageSource, setImageSource] = useRecoilState(StudentCard);
     const inputRef = useRef(null);
 
     useEffect(() => {
@@ -29,8 +20,9 @@ export default function College(){
 
     useEffect(() => {
         if (imageSource) {
+            console.log(imageSource)
             setState(2);
-            return ;
+        return ;
         }
         setState(0);
     },[imageSource])
@@ -63,8 +55,20 @@ export default function College(){
                     alt='이미지 미리보기'/>    
             </InfoComponent>
             <Next
-                state = {state}/>
+                input = {imageSource}
+                state = {state}
+                nextView={"login"}/>
         </Register>
     )
     
 }
+
+College.Layout = ({ children }) => {
+    return (
+       <div>
+        {children}
+       </div>
+    );
+};
+  
+College.Layout.displayName = 'RegisterLayout';

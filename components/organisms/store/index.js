@@ -12,7 +12,7 @@ const Store = ({storeName, imageSrc, minDiscount, maxDisount}) => {
             <ImageLayout />
             <StyledStoreInfoDiv>
                 <Text text={storeName} className="storeName" />
-                <InlineText text1={minDiscount} text1ClassName="minDiscount" text2={maxDisount} text2ClassName="maxDiscount"/>
+                <InlineText divClassName="basic" textOne={minDiscount} textOneClassName="minDiscount" textTwo={maxDisount} textTwoClassName="maxDiscount"/>
             </StyledStoreInfoDiv>
             <StyledReviewInfoDiv>
                 <MenuRanking />

@@ -12,12 +12,20 @@ import {
     RegisterComponent,
 TotalLogin } from "./style";
 import Line from "@components/line";
+import useLogin from "@hooks/useLogin";
 
 const Login = () => {
     const [state, setState] = useState(false);
     const [inputId, setInputId] = useState('');
     const [inputPw, setInputPw] = useState('');
+    const [post, setPost] = useState(0);
+    const login = useLogin(inputId, inputPw);
 
+    useEffect(() => {
+        if (!post) return ;
+        login();
+    }, [post]);
+    
     useEffect(() => {
         if (inputId && inputPw) {
             setState(true);
@@ -35,7 +43,7 @@ const Login = () => {
     }
 
     const onClickLoginButton = () => {
-        Router.push('/');
+        setPost(post + 1);
     }
 
     const onClickRegisterButton = () => {

@@ -8,9 +8,9 @@ const PercentBlock = ({ children }) => {
   return (
     <StyledPercentBlockDiv>
       {React.Children.map(children, child => (
-        <InlineBlock className="outside">
+        <InlineBlock className={child.props.out}>
           <InlineBlock className={`${child.props.inlineBlockClass}`}>
-            <ImageText src={child.props.src} alt={child.props.alt} text={child.props.text} />
+            <ImageText divClassName="basic" src={child.props.src} alt={child.props.alt} text={child.props.text} textClassName={child.props.textClassName}/>
           </InlineBlock>
         </InlineBlock>
       ))}

@@ -5,7 +5,7 @@ import InlineText from "@molecules/inlineText"
 const MarkerContentHeader = ({name, status, statusText}) => {
     return (
         <MarkerContentHeaderDiv>
-            <InlineText text1={name} text2={statusText} text1ClassName="markerContentHeaderName" text2ClassName="markerContentHeaderStatus" status={status} />
+            <InlineText divClassName="basic" textOne={name} textTwo={statusText} textOneClassName="markerContentHeaderName" textTwoClassName="markerContentHeaderStatus" status={status} />
         </MarkerContentHeaderDiv>
     );
 };

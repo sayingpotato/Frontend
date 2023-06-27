@@ -17,6 +17,14 @@ const StyledImage = styled.img`
     display: block;
     margin: auto;
   }
+  &.storeInfoIcon {
+    width : 20px;
+    height : 20px;
+  }
+  &.mypageMoneyIcon {
+    width : 30px;
+    height : 30px;
+  }
 `
 
 export { StyledImage };
