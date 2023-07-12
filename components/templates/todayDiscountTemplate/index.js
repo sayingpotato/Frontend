@@ -4,11 +4,11 @@ import { TodayDiscountTemplateDiv } from './style';
 import TodayDiscountContent from '@organisms/todayDiscountContent';
 
 const TodayDiscountTemplate = ({data}) => {
-    const value = JSON.parse(data)
+    console.log(data)
 
     return (
         <TodayDiscountTemplateDiv>
-            <TodayDiscountContent src={value['imageSrc']} alt="logo" text={value['name']} />
+            <TodayDiscountContent src={data.storeTodayDiscountThumbnail} alt="logo" text={data.name} />
         </TodayDiscountTemplateDiv>
     );
 };

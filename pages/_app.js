@@ -6,12 +6,16 @@ import { queryClient } from '../utils/queryClient';
 import Navbar from '../components/navbar/index';
 import Splash from '../pages/splash/index';
 import Head from 'next/head'
-import { CookiesProvider } from "react-cookie";
 
 export default function App({Component, pageProps}) {
   const Layout = Component.Layout || Navbar;
   const [showSplash, setShowSplash] = useState(true);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setShowSplash(false);
+    }, 5000);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -22,12 +26,11 @@ export default function App({Component, pageProps}) {
         />
       </Head>
       <RecoilRoot>
-          <CookiesProvider>
             <GlobalStyle/>
+            {showSplash ? <Splash /> :
             <Layout>
               <Component {...pageProps} />
-            </Layout>
-          </CookiesProvider>
+            </Layout>}
       </RecoilRoot>
     </QueryClientProvider>
    )

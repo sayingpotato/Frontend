@@ -3,11 +3,11 @@ import { ImageTitleDiv } from './style';
 import Text from "@atoms/text";
 import Image from "@atoms/image";
 
-const ImageTitle = ({ imageClassName, textClassNameName, src, alt, text }) => {
+const ImageTitle = ({ imageClassName, textClassName, src, alt, text }) => {
     return (
         <ImageTitleDiv>
             <Image src={src} alt={alt} className={imageClassName}/>
-            <Text className={textClassNameName} text={text} />
+            <Text className={textClassName} text={text} />
         </ImageTitleDiv>
     );
 };

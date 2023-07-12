@@ -19,9 +19,9 @@ const StyledButton = styled.button`
     width: 50px;
     font-size: 10px;
     height: 20px;
-    background-color: ${(props) => (props.state === 'cafe' ? 'black' : 'white')};
-    color: ${(props) => (props.state === 'cafe' ? 'white' : 'black')};
-    border: 0px solid ${(props) => (props.state === 'cafe' ? 'black' : 'white')};
+    background-color: ${(props) => (props.state === 'CAFE' ? 'black' : 'white')};
+    color: ${(props) => (props.state === 'CAFE' ? 'white' : 'black')};
+    border: 0px solid ${(props) => (props.state === 'CAFE' ? 'black' : 'white')};
     border-radius: 3px;
   }
 
@@ -29,9 +29,9 @@ const StyledButton = styled.button`
     width: 50px;
     font-size: 10px;
     height: 20px;
-    background-color: ${(props) => (props.state === 'food' ? 'black' : 'white')};
-    color: ${(props) => (props.state === 'food' ? 'white' : 'black')};
-    border: 0px solid ${(props) => (props.state === 'cafe' ? 'black' : 'white')};
+    background-color: ${(props) => (props.state === 'FOOD' ? 'black' : 'white')};
+    color: ${(props) => (props.state === 'FOOD' ? 'white' : 'black')};
+    border: 0px solid ${(props) => (props.state === 'FOOD' ? 'black' : 'white')};
     border-radius: 3px;
   }
 
