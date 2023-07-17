@@ -44,6 +44,10 @@ const StyledText = styled.p`
     font-weight: 500;
   }
 
+  &.reviewCount {
+    font-size: 8px;
+  }
+
   &.todayDiscountLogoName {
     margin: auto;
     font-weight: 600;

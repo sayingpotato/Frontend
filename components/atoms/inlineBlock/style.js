@@ -56,40 +56,44 @@ const StyledInlineBlock = styled.div`
     background-color: #4f79f1;
     display: flex;
     align-items: center;
-    padding: 0 0 0 5%;
+    padding: 0 5% 0 5%;
     border-radius: 4px;
     width: 60%;
     height: 25px;
+    justify-content: space-between;
   }
 
   &.twoVisitorReviewInside {
     background-color: #6C92FF;
     display: flex;
     align-items: center;
-    padding: 0 0 0 5%;
+    padding: 0 5% 0 5%;
     border-radius: 4px;
     width: 50%;
     height: 25px;
+    justify-content: space-between;
   }
 
   &.threeVisitorReviewInside {
     background-color: #A3BAFF;
     display: flex;
     align-items: center;
-    padding: 0 0 0 5%;
+    padding: 0 5% 0 5%;
     border-radius: 4px;
     width: 40%;
     height: 25px;
+    justify-content: space-between;
   }
 
   &.fourVisitorReviewInside {
     background-color: #DAE3FF;
     display: flex;
     align-items: center;
-    padding: 0 0 0 5%;
+    padding: 0 5% 0 5%;
     border-radius: 4px;
     width: 30%;
     height: 25px;
+    justify-content: space-between;
   }
 `
 

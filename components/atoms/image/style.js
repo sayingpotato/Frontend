@@ -25,6 +25,18 @@ const StyledImage = styled.img`
     width : 30px;
     height : 30px;
   }
+  &.storeRoomImage {
+    width : 200px;
+    height : 120px;
+  }
+  &.storeImage {
+    width : 60px;
+    height : 60px;
+  }
+  &.menuImage {
+    width : 100px;
+    height : 100px;
+  }
 `
 
 export { StyledImage };

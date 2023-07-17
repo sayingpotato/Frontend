@@ -5,16 +5,15 @@ import ImageText from '@molecules/imageText';
 import InlineText from '@molecules/inlineText';
 
 const StoreVisitorReview = ({reviewData}) => {
-
     return (
         <>
             <StoreVisitorReviewDiv>
-                    <InlineText divClassName="basic" textOne="방문자 리뷰" textTwo={reviewData.total} textOneClassName="storeDetailMiniTitle" textTwoClassName="storeDetailReviewTotal" />
+                    <InlineText divClassName="basic" textOne="방문자 리뷰" textTwo={reviewData.allNum} textOneClassName="storeDetailMiniTitle" textTwoClassName="storeDetailReviewTotal" />
                     <PercentBlock>
-                        <ImageText text={reviewData.review1.text} textClassName="reviewName" inlineBlockClass="oneVisitorReviewInside" out="visitorReviewOutside" reviewCount={reviewData.review1.count} />
-                        <ImageText text={reviewData.review2.text} textClassName="reviewName" inlineBlockClass="twoVisitorReviewInside" out="visitorReviewOutside" reviewCount={reviewData.review2.count} />
-                        <ImageText text={reviewData.review3.text} textClassName="reviewName" inlineBlockClass="threeVisitorReviewInside" out="visitorReviewOutside" reviewCount={reviewData.review3.count} />
-                        <ImageText text={reviewData.review4.text} textClassName="reviewName" inlineBlockClass="fourVisitorReviewInside" out="visitorReviewOutside" reviewCount={reviewData.review4.count} />
+                        <ImageText text={"커피가 맛있어요"} textClassName="reviewName" inlineBlockClass="oneVisitorReviewInside" out="visitorReviewOutside" reviewCount={reviewData.greatBeverageNum} />
+                        <ImageText text={"가성비가 좋아요"} textClassName="reviewName" inlineBlockClass="twoVisitorReviewInside" out="visitorReviewOutside" reviewCount={reviewData.greatCoffeeNum} />
+                        <ImageText text={"화장실이 좋아요"} textClassName="reviewName" inlineBlockClass="threeVisitorReviewInside" out="visitorReviewOutside" reviewCount={reviewData.greatFoodNum} />
+                        <ImageText text={"분위기가 좋아요"} textClassName="reviewName" inlineBlockClass="fourVisitorReviewInside" out="visitorReviewOutside" reviewCount={reviewData.manyOutletNum} />
                     </PercentBlock>
             </StoreVisitorReviewDiv>
         </>

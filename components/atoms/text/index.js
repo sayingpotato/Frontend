@@ -1,9 +1,9 @@
 import { StyledText } from './style';
 
-const Text = ({ className, text, status }) => {
+const Text = ({ className, text, status, onClick }) => {
 
     return (
-        <StyledText className={className} status={status}>{text}</StyledText>
+        <StyledText className={className} status={status} onClick={onClick}>{text}</StyledText>
     );
 };
 

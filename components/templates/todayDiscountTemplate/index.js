@@ -4,11 +4,15 @@ import { TodayDiscountTemplateDiv } from './style';
 import TodayDiscountContent from '@organisms/todayDiscountContent';
 
 const TodayDiscountTemplate = ({data}) => {
-    console.log(data)
-
+    const onClickTodayDiscountValue = () => {
+        Router.push({
+          pathname: '/storedetail',
+          query: { id: data.id },
+        })
+    }
     return (
         <TodayDiscountTemplateDiv>
-            <TodayDiscountContent src={data.storeTodayDiscountThumbnail} alt="logo" text={data.name} />
+            <TodayDiscountContent onClick={onClickTodayDiscountValue} src={data.storeTodayDiscountThumbnail} alt="logo" text={data.name} />
         </TodayDiscountTemplateDiv>
     );
 };

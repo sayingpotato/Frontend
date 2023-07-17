@@ -26,15 +26,15 @@ const TodayDiscount = () => {
   useEffect(() => {
     const dateIndex = date();
     const todayName = daysOfWeek[dateIndex][0]
-    const prevName = daysOfWeek[dateIndex-1][0]
-    const nextName = daysOfWeek[dateIndex+1][0]
+    const prevName = daysOfWeek[dateIndex-1 == -1 ? 6 : dateIndex-1][0]
+    const nextName = daysOfWeek[dateIndex+1 == 7 ? 0 : dateIndex+1][0]
 
     setPrevDay(prevName)
     setNextDay(nextName)
     setNowDay(todayName)
     setEnglishNowDay("MON") // DB에 데이터 삽입 이후 변경 예정 
   }, [])
-
+  
   const getDailyDiscountStore = useGetDailyDiscountStore(englishNowDay);
 
   useEffect(() => {
