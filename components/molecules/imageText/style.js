@@ -27,6 +27,11 @@ const StyledImageTextDiv = styled.div`
         align-items: center;
         gap : 10px;
     }
+
+    &.markerContentImageTextDiv {
+        display: flex;
+        gap : 10px;
+    }
 `
 
 export { StyledImageTextDiv };

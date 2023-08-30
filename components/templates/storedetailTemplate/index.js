@@ -17,7 +17,7 @@ const StorelistTemplate = ({data}) => {
             <Line />
             <StoreInformation address={data.address.roadAddr} time={data.storeOperationHours} call={data.phone} concent={data.outletNum} rank={"1위 무질서도"} room={data.tableImg} />
             <Line />
-            <StoreVisitorReview reviewData={data.reviewResultOfCafe}/>
+            <StoreVisitorReview reviewData={data.reviewResult}/>
             <Line />
             <StoreImages images={data.storeDetailStoreImages}/>
             <Line />

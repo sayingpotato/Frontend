@@ -25,62 +25,14 @@ const KaKaoMap = () => {
   const cafeIcon =
     'https://user-images.githubusercontent.com/64068511/229498035-9dfa6500-7267-4cf4-a5d4-660d55e0db6e.svg'
 
-  let data = [
-    {
-      id: 1,
-      latitude: 36.6283,
-      longitude: 127.456,
-
-      value: {
-        id: 1,
-        name: '좋은 원두',
-        address: '충북 청주시 서원구 1순환로 672번길 64 (우)28643',
-        time: '월요일',
-        call: '041-271-1234',
-        status: 'OPEN',
-        category: 'FOOD',
-        discountInfo: 'TODAY_DISCOUNT',
-      },
-    },
-    {
-      id: 2,
-      latitude: 36.6283,
-      longitude: 127.436,
-
-      value: {
-        id: 2,
-        name: '좋은 원두111',
-        address: '충북 청주시 서원구 1순환로 672번길 64 (우)28643',
-        time: '월요일111',
-        call: '041-271-12341111',
-        status: 'CLOSED',
-        category: 'CAFE',
-        discountInfo: 'NONE',
-      },
-    },
-    {
-      id: 3,
-      latitude: 36.6283,
-      longitude: 127.486,
-      value: {
-        id: 3,
-        name: '좋은 원두222',
-        address: '충북 청주시 서원구 1순환로 672번길 64 (우)28643',
-        time: '월요일222',
-        call: '041-271-122222222211',
-        status: 'OPEN',
-        category: 'FOOD',
-        discountInfo: 'NONE',
-      },
-    },
-  ]
-
   const mapRef = useRef()
 
   // 현 위치 (최초 useEffect 함수 또는 새로고침 버튼)
-  const [currentCenter, setCurrentCenter] = useState({ lat: 0, lng: 0 })
+  // const [currentCenter, setCurrentCenter] = useState({ lat: 0, lng: 0 })
+  const [currentCenter, setCurrentCenter] = useState({ lat: 36.62517, lng: 127.455409 })
   // 지도의 중심 값 (최초에는 현 위치를 기준 -> 지도를 움직일 때마다 변경 또는 마커를 클릭할 때 변경)
-  const [center, setCenter] = useState({ lat: 0, lng: 0 })
+  // const [center, setCenter] = useState({ lat: 0, lng: 0 })
+  const [center, setCenter] = useState({ lat: 36.62517, lng: 127.455409 })
   // 라우터 중심값
   const [routerCenter, setRouterCenter] = useState({ lat: goBackrouterValue[0], lng: goBackrouterValue[1] })
 
@@ -90,7 +42,6 @@ const KaKaoMap = () => {
     address: '',
     time: '',
     call: '',
-    today: 0,
     category: '',
     status: '',
   })
@@ -112,15 +63,25 @@ const KaKaoMap = () => {
     }
 
     const info = JSON.parse(e.getTitle())
-    setMarkerInfo(info)
+    const timeText = info.markerInfo.operationHour[0].startDay + '~' + info.markerInfo.operationHour[0].endDay + ' ' + info.markerInfo.operationHour[0].startTime + '~' + info.markerInfo.operationHour[0].endTime
+    setMarkerInfo({
+      id : info.id,
+      name: info.name,
+      address: info.markerInfo.address.roadAddr,
+      time: timeText,
+      call: info.markerInfo.phone,
+      category: info.markerInfo.category,
+      status: info.markerInfo.status,
+    })
   }
 
   useEffect(() => {
     currentLocation()
       .then((result) => {
         setCurrentCenter({
-          lat: result.latitude,
-          lng: result.longitude,
+          // lat: result.latitude,
+          // lng: result.longitude,
+          lat: 36.62517, lng: 127.455409
         })
       })
       .catch((error) => {
@@ -164,11 +125,6 @@ const KaKaoMap = () => {
 
   return (
     <StyledMapDiv>
-      {datas && datas.map((item, index) => {
-        return (
-          <div key = {index}>{item.markerInfo.category}</div>
-        )
-      })}
       <StyledMap
         center={center}
         ref={mapRef}
@@ -180,18 +136,18 @@ const KaKaoMap = () => {
           lng: map.getCenter().getLng(),
         })}
       >
-        {data.map((oneData) => (
+        {datas && datas.map((oneData, index) => (
           <MapMarker 
             className="marker"
             key={`${oneData.id}`}
-            position={{ lat: `${oneData.latitude}`, lng: `${oneData.longitude}` }}
+            position={{ lat: `${oneData.location.latitude}`, lng: `${oneData.location.longitude}` }}
             image={{
-              src: oneData.value['category'] === 'FOOD' ? foodIcon : cafeIcon,
+              src: oneData.markerInfo.category === 'FOOD' ? foodIcon : cafeIcon,
               size: imageSize,
             }}
-            opacity={oneData.value['discountInfo'] === 'TODAY_DISCOUNT' ? 1 : 0.5}
+            opacity={oneData.markerInfo.discountInfo === 'TODAY_DISCOUNT' ? 1 : 0.5}
             onClick={handleMarkerClick}
-            title={JSON.stringify(oneData.value)}
+            title={JSON.stringify(oneData)}
           />
         ))}
       </StyledMap>
