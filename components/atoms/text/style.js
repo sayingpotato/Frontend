@@ -34,7 +34,7 @@ const StyledText = styled.p`
   }
 
   &.reviewMenuName {
-    font-size: 13px;
+    font-size: 10px;
     font-weight: 500;
     margin-left: 5%;
   }

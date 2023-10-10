@@ -4,12 +4,9 @@ import { StorelistTemplateDiv } from './style';
 import ImageButton from "@molecules/imageButton"
 import Store from "@organisms/store"
 
-const StorelistTemplate = ({storeName, imageSrc, minDiscount, maxDisount}) => {
+const StorelistTemplate = ({storeName, imageSrc, minDiscount, maxDisount, menuTopArr, reviewTopArr}) => {
     const router = useRouter()
     const routerValue = [router['query']['lat'], router['query']['lng']]
-
-    // map에서 중심 값을 통하여 정렬 받을 예정
-    // console.log(routerValue)
 
     const goMapButtonClick = () => {
         router.push({
@@ -18,12 +15,18 @@ const StorelistTemplate = ({storeName, imageSrc, minDiscount, maxDisount}) => {
         })
     }
 
+    const minDiscountText = `${minDiscount} %`
+    const maxDisountText = `${maxDisount} %`
+
     return (
         <StorelistTemplateDiv>
             <Store storeName={storeName} 
                 imageSrc={imageSrc} 
-                minDiscount={minDiscount} 
-                maxDisount={maxDisount} />
+                minDiscount={minDiscountText} 
+                maxDisount={maxDisountText}
+                menuTopArr={menuTopArr}
+                reviewTopArr={reviewTopArr}
+                />
             <ImageButton className="mapImageButton" src="images/whiteMap.svg" alt="images/whiteMap.svg" onClick={goMapButtonClick}/>
         </StorelistTemplateDiv>
     );
