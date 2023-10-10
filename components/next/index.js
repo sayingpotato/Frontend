@@ -32,15 +32,19 @@ export default function Next({ state, input, nextView}){
                 case "nickname" : setRegisterInfo({...registerInfo, password : input})
                                   router.push(`/register/info/${nextView}`)
                                   break;
-                case "student" : setRegisterInfo({...registerInfo, nickname : input})
-                                 setPost(post + 1);
+                case "college" : setRegisterInfo({...registerInfo, nickname : input})
+                                  router.push(`/register/info/${nextView}`)  
+                                  break;
+                case "student" :
+                                submitStudentCard()
                                  router.push(`/login`)
                                  break;
                 case "login" :  
-                console.log(typeof(input)) 
-                                submitStudentCard()
-                                router.push(`/login`)
-                                break;
+                    console.log(typeof(input)) 
+                    setRegisterInfo({...registerInfo, customerNumber : input[0], customerDept : input[1], customerCollege : input[2]})
+                                     setPost(post + 1);
+                                    router.push(`/login`)
+                                    break;
             }
         }
     }

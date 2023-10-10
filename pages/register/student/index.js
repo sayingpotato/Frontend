@@ -29,7 +29,7 @@ export default function College(){
 
     const onClickImage = () => {
         inputRef.current.click();
-    }
+    }   
 
     const onChangeFile = (e) => {
         const imageUrl = URL.createObjectURL(e.target.files[0]);
@@ -57,7 +57,7 @@ export default function College(){
             <Next
                 input = {imageSource}
                 state = {state}
-                nextView={"login"}/>
+                nextView={"student"}/>
         </Register>
     )
     

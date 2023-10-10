@@ -82,7 +82,7 @@ const NickName = () => {
           })}
         </RegexComponent>
       </InfoComponent>
-      <Next state={state} input={inputValue} nextView={'student'} />
+      <Next state={state} input={inputValue} nextView={'college'} />
     </Register>
   )
 }

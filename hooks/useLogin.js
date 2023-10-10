@@ -18,11 +18,13 @@ const useLogin = (id, pw) => {
             return ;
         }
 
-        if  (data.customerStatus === "COMPLETE") {
+        // 학생증 체크
+        if  (data.customerStatus === "UNAUTHORIZED") {
             Router.push("register/student");
-            return;
-        } 
-        Router.push("map");
+        } else {
+            Router.push("map");
+        }
+
         setLoginStatus(true);
         setCookie('accessToken', data.accessToken, {
             path: '/'

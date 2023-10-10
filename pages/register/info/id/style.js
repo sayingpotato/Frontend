@@ -20,19 +20,19 @@ const InfoComponent = styled.div`
         height: 200px;
         margin-top: 16px;
     }
+    height : 70px;
 `;
 
 const RegexComponent = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 0 32px;
-    padding: 4px 4px 4px 4px;
 `;
 
 const InputSpace = styled.input`
     border: 0px solid #D9D9D9;
     border-bottom: 2px solid ${props => props.state === 2? '#387D04' : props.state === 1 ? '#FF0000' : '#D9D9D9'};
-    height: 48px;
+    height: 25px;
     width: 98%;
     &:focus-visible {
         font-family: 'Pretendard Variable';

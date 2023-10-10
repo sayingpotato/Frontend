@@ -19,8 +19,12 @@ const login = async(form) => {
 const submitStudentCard = async(form) => {
     const {data} = await fetcher.put(
         "api/v1/customers/image",
-        form
-    );
+        form,
+        {
+        headers: { 
+            'Content-Type': 'multipart/form-data', // form-data로 보내기 위한 헤더 설정
+        },
+    });
     return data;
 }
 
