@@ -69,6 +69,29 @@ const StyledButton = styled.button`
     border-radius : 5px;
     background-color : white;
   }
+
+  &.orderButton {
+    border: 1px solid white;
+    border-radius: 6px;
+    background-color : #28469C;
+    color : white;
+    width: 180px;
+    height : 40px;
+    display: block;
+    margin : 0 auto;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: "Pretendard Variable";
+  }
+
+  &.orderPeopleButton {
+    border: 1px solid white;
+    background-color : #999999;
+    width: 50px;
+    color : white;
+    border-radius: 6px;
+  }
 `
 
 export { StyledButton };

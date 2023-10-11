@@ -2,84 +2,28 @@ import { useEffect, useState, useRef } from 'react'
 
 import Title from '@components/title'
 import OrderedContent from '@components/orderedContent'
+import useGetOrder from '@hooks/useGetOrder';
 
-import { ContentDiv } from './style'
+import { ContentDiv } from '../../styles/order/style'
 
-const index = () => {
-  let data = [
-    {
-      id: 1,
-      value: {
-        name: '좋은 원두',
-        imageSrc: '/images/bronzeMedal.svg',
-        menu: [
-          '카페라떼 : 1',
-          '카페라떼 : 3',
-          '카라멜마끼아또 : 5',
-          '카라멜마끼아또 : 5',
-          '카라멜마끼아또 : 5',
-          '카라멜마끼아또 : 5',
-        ],
-      },
-      type: 'food',
-    },
-    {
-      id: 2,
-      value: {
-        name: '좋은 원두2',
-        imageSrc: '/images/silverMedal.svg',
-        menu: [
-          '카페라떼 : 1',
-          '카페라떼 : 3',
-          '카라멜마끼아또 : 5',
-          '카라멜마끼아또 : 5',
-          '카페 모카 : 5',
-          '카라멜마끼아또 : 5',
-        ],
-      },
-      type: 'cafe',
-    },
-    {
-      id: 3,
-      value: {
-        name: '좋은 원두3',
-        imageSrc: '/images/goldMedal.svg',
-        menu: [
-          '카페라떼 : 1',
-          '카페라떼 : 3',
-          '카라멜마끼아또 : 5',
-          '카라멜마끼아또 : 5',
-        ],
-      },
-      type: 'food',
-    },
-    {
-      id: 4,
-      value: {
-        name: '좋은 원두4',
-        imageSrc: '/images/close.svg',
-        menu: [
-          '카페라떼 : 1',
-          '카페라떼 : 3',
-          '카라멜마끼아또 : 5',
-          '카라멜마끼아또 : 5',
-          '카라멜마끼아또 : 5',
-          '카라멜마끼아또 : 5',
-        ],
-      },
-      type: 'food',
-    },
-  ]
+const Order = () => {
 
-  const orderedResult = data.map((oneData) => {
+  const [data, setData] = useState("");
+  const getOrder = useGetOrder();
+
+  useEffect(() => { 
+    setData(getOrder); 
+  },[getOrder]);
+
+  const orderedResult = data && data.map((oneData, index) => {
     return (
       <OrderedContent
-        key={`${oneData.id}`}
-        data={`${JSON.stringify(oneData.value)}`}
-        type={`${oneData.type}`}
+        key={index}
+        data={oneData}
       ></OrderedContent>
     )
   })
+
   return (
     <>
       <Title>주문 내역</Title>
@@ -88,4 +32,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Order

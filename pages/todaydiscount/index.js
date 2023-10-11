@@ -8,7 +8,7 @@ import TodayDiscountHeader from '@organisms/todayDiscountHeader'
 import TodayDiscountTemplate from '@templates/todayDiscountTemplate'
 
 import useGetDailyDiscountStore from '@hooks/useGetDailyDiscountStoreList';
-import { ContentWholeDiv, ContentDiv } from './style';
+import { ContentWholeDiv, ContentDiv } from '../../styles/todaydiscount/style';
 
 const TodayDiscount = () => {
 

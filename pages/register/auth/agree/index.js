@@ -5,7 +5,7 @@ import wrong from '@public/images/checkCircleFalse.svg'
 import Image from 'next/image'
 import Next from "@components/next";
 import Label from "@components/label";
-import {AgreeComponent, OneAgree} from "./style"
+import {AgreeComponent, OneAgree} from "../../../../styles/register/auth/agree/style"
 import { RegisterLevel } from "@utils/recoil/atom.js"
 import { useSetRecoilState} from "recoil"
 

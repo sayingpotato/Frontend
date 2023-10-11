@@ -15,28 +15,29 @@ import {
 } from './style'
 
 import Review from '@components/reviewContent'
+import Text from '@components/atoms/text'
 
 const OrderedContent = (props) => {
-  const value = JSON.parse(props.data)
+  const value = props.data;
   const type = props.type
 
   const [open, setOpen] = useState(false)
+  const [reviewComment, setReviewComment] = useState();
 
   const reviewButtonClick = () => {
     setOpen(!open)
   }
 
-  let data = value['menu']
-
   const menuData = () => {
     const result = []
-    if (data.length <= 5) {
-      for (let i = 0; i < data.length; i++) {
-        result.push(<PMenu key={i}>{data[i]}</PMenu>)
+    if (value.orderDetailOrderItems.length <= 5) {
+      for (let i = 0; i < value.orderDetailOrderItems.length; i++) {
+        result.push(<PMenu key={i}>{value.orderDetailOrderItems[i].itemName}</PMenu>)
       }
-    } else {
+    }
+    else {
       for (let i = 0; i < 5; i++) {
-        result.push(<PMenu key={i}>{data[i]}</PMenu>)
+        result.push(<PMenu key={i}>{value.orderDetailOrderItems[i].itemName}</PMenu>)
       }
       result.push(<PMenu key={5}>...</PMenu>)
     }
@@ -46,22 +47,26 @@ const OrderedContent = (props) => {
 
   return (
     <Div state={open}>
+      <Text className={value.orderStatus === "ORDER" ? "orderStart" : "orderFinish"} text={value.orderStatus === "ORDER" ? "주문 중" : "주문 완료"}></Text>
       <ContentDiv>
-        <StyledImage src={value['imageSrc']} alt="logo" />
+        <StyledImage src={value.storeInfo.thumbnail} alt="logo" />
+        
         <StoreDiv>
-          <PName>{value['name']}</PName>
+          <PName>{value.storeInfo.storeName}</PName>
           <MenuDiv>{menuData()}</MenuDiv>
           <MoreButton>주문 상세</MoreButton>
         </StoreDiv>
       </ContentDiv>
+      
       <ReviewDiv state={open}>
         <ReviewButton onClick={reviewButtonClick}>
           {open ? '▲ 접기' : '▼ 리뷰하기'}
         </ReviewButton>
         <ReviewContent state={open}>
-          <Review type={type}/>
+          <Review type={value.storeInfo.category} reviews={value.orderDetailReview} />
         </ReviewContent>
       </ReviewDiv>
+      
     </Div>
   )
 }

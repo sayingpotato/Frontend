@@ -13,9 +13,10 @@ const MenuWholeImagesDiv = styled.div`
 `
 
 const MenuImagesContentDiv = styled.div`
-    float: left;
-    width: calc((100% - (2 * 15px)) / 3);
-    box-sizing: border-box;
+  float: left;
+  width: calc((100% - (2 * 15px)) / 3);
+  box-sizing: border-box;
+  border: ${({ isSelected }) => (isSelected ? "2px solid black" : "2px solid transparent")};
 `
 
 const ImagesDiv = styled.div`
@@ -26,4 +27,9 @@ const ImagesDiv = styled.div`
   text-align : center;
 `
 
-export { MenuImagesDiv, MenuWholeImagesDiv, MenuImagesContentDiv, ImagesDiv };
+const PeopleButtons = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+export { MenuImagesDiv, MenuWholeImagesDiv, MenuImagesContentDiv, ImagesDiv, PeopleButtons };

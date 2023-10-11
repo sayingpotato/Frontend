@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { InfoComponent, InputSpace, RegexComponent } from '../id/style'
+import { InfoComponent, InputSpace, RegexComponent } from '../../../../styles/register/info/id/style'
 import Register from '@pages/register/index'
 import Regex from '@components/regex'
 import Next from '@components/next'

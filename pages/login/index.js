@@ -10,7 +10,7 @@ import {
     RegisterButton,
     Find,
     RegisterComponent,
-TotalLogin } from "./style";
+TotalLogin } from "../../styles/login/style";
 import Line from "@components/line";
 import useLogin from "@hooks/useLogin";
 
@@ -47,7 +47,7 @@ const Login = () => {
     }
 
     const onClickRegisterButton = () => {
-        Router.push('/register');
+        Router.push('/register/auth/self');
     }
     
     return (

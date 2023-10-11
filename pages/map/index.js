@@ -9,7 +9,7 @@ import MarkerContent from '@organisms/markerContent'
 import {
   StyledMapDiv,
   StyledMap,
-} from './style'
+} from '../../styles/map/style'
 
 import currentLocation from '@utils/getCurrentLocation'
 

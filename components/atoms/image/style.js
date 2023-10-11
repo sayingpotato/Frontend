@@ -37,6 +37,12 @@ const StyledImage = styled.img`
     width : 100px;
     height : 100px;
   }
+  &.whoLogo {
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin: auto;
+  }
 `
 
 export { StyledImage };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Register from '@pages/register'
-import { InfoComponent, InputSpace, RegexComponent } from '../id/style'
+import { InfoComponent, InputSpace, RegexComponent } from '../../../../styles/register/info/id/style'
 import Regex from '@components/regex'
 import Next from '@components/next'
 import wrong from '@public/images/close.svg'

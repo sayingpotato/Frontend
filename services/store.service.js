@@ -36,11 +36,61 @@ const getSurroundStoreList = async(latitude, longtitude) => {
     }
 }
 
+const submitOrder = async(form) => {
+    try {
+        const data = await storeApi.submitOrder(form);
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const submitReview = async(review) => {
+    try {
+        const data = await storeApi.submitReview(review);
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getOrder = async() => {
+    try {
+        const data = await storeApi.getOrder();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getSearchList = async(searchKey) => {
+    try {
+        const data = await storeApi.getSearchList(searchKey);
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getDiscountTotal = async() => {
+    try {
+        const data = await storeApi.getDiscountTotal();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
 const storeService = {
     getDailyDiscountStore,
     getMapStoreList,
     getStoreDetail,
-    getSurroundStoreList
+    getSurroundStoreList,
+    submitOrder,
+    submitReview,
+    getOrder,
+    getSearchList,
+    getDiscountTotal
 }
 
 export default storeService;

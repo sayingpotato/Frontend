@@ -1,38 +1,31 @@
+import { useEffect, useState, useRef } from 'react'
+
 import Title from '@molecules/title';
 import MypageContentInfoTemplate from '@components/templates/mypageContentInfoTemplate';
+import useGetNickName from '@hooks/useGetNickName';
+import useGetDiscountTotal from '@hooks/useGetDiscountTotal';
 
-const mypage = () => {
+const Mypage = () => {
 
-  let data = [
-    {
-      id: 1,
-      value: {
-        name: '좋은 원두1',
-        discountMoney : 15000
-      },
-    },
-    {
-      id: 2,
-      value: {
-        name: '좋은 원두2',
-        discountMoney : 2000
-      },
-    },
-    {
-      id: 3,
-      value: {
-        name: '좋은 원두3',
-        discountMoney : 3000
-      },
-    },
-  ]
+  const [userInfo, setUserInfo] = useState("");
+  const [discountInfo, setDiscountInfo] = useState("");
+
+  const getNickName = useGetNickName();
+  const getDiscountTotal = useGetDiscountTotal();
+
+  useEffect(() => { 
+    setUserInfo(getNickName); 
+    setDiscountInfo(getDiscountTotal);
+  },[getNickName, getDiscountTotal]);
+
+  console.log(discountInfo)
 
   return (
     <>
       <Title text="마이페이지" />
-      <MypageContentInfoTemplate name="권낙현" totalMoney="15000" discountData={data}/>
+      <MypageContentInfoTemplate name={userInfo.nickname} discountData={discountInfo}/>
     </>
   )
 }
 
-export default mypage
+export default Mypage

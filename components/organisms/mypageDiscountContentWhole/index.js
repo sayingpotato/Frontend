@@ -8,13 +8,13 @@ const MypageDiscountInfo = ({discountData}) => {
 
     return (
         <DiscountContentWholeDiv>
-        {discountData.map((item, index) => {
+        {/* {discountData.map((item, index) => {
         return (
             <DiscountContent key={index}>
                 <Image src="images/coin.svg" alt="돈 사진"/>
                 <InlineText divClassName="discountContentValue" textOne={item.value.name} textTwo={item.value.discountMoney} textOneClassName="discountContentName" textTwoClassName="discountContentMoney" />
             </DiscountContent>
-        )})}
+        )})} */}
         </DiscountContentWholeDiv>
     );
 };

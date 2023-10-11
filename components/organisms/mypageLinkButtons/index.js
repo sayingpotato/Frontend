@@ -27,7 +27,7 @@ const MypageLinkButtons = () => {
                 <ImageText text={item.title} src={item.image} divClassName="mypageButtonsDiv" textClassName="mypageButtonsName"/>
             </Button>   
         )})}
-        <Button className="mypageButtons" onClick={() => handleButtonClick("login")}>
+        <Button className="mypageButtons" onClick={() => handleButtonClick("who")}>
             <Text text="로그아웃" className="mypageButtonsLogoutName"/>
         </Button>
         </>

@@ -3,7 +3,7 @@ import Register from "@pages/register";
 import {RegisterLevel, StudentCard} from "@utils/recoil/atom";
 import { useRecoilState, useSetRecoilState} from "recoil";
 import Label from "@components/label";
-import { InfoComponent } from '@pages/register/info/id/style';
+import { InfoComponent } from '@styles/register/info/id/style';
 import Image from "next/image";
 import preview from '@public/images/studentPreview.svg'
 import Next from "@components/next";
@@ -12,6 +12,7 @@ export default function College(){
     const setRegisterLevel = useSetRecoilState(RegisterLevel);
     const [state, setState] = useState(0);
     const [imageSource, setImageSource] = useRecoilState(StudentCard);
+    const [alterImage, setAlterImage] = useState();
     const inputRef = useRef(null);
 
     useEffect(() => {
@@ -32,8 +33,10 @@ export default function College(){
     }   
 
     const onChangeFile = (e) => {
-        const imageUrl = URL.createObjectURL(e.target.files[0]);
+        const imageUrl = e.target.files[0];
+        const alterImageUrl = URL.createObjectURL(imageUrl);
         setImageSource(imageUrl);
+        setAlterImage(alterImageUrl);
     }
 
     return (
@@ -51,7 +54,7 @@ export default function College(){
                     height={40}
                     onClick={onClickImage}
                     className="imagePreview"
-                    src={imageSource?imageSource:preview}
+                    src={alterImage?alterImage:preview}
                     alt='이미지 미리보기'/>    
             </InfoComponent>
             <Next

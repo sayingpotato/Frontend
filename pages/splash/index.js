@@ -5,7 +5,7 @@ import {
     ContentDiv, 
     Title,
     Name
-} from './style'
+} from '../../styles/splash/style'
 
 const Splash = () => {
     const title1 = "\"전 그냥 말하는 감자라구요.";

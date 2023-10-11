@@ -1,15 +1,14 @@
 import styled from 'styled-components';
 
-const StyledInput = styled.div`
-  border: 1px solid black;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+const StyledInput = styled.input`
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 
-  &.blue {
-    background-color: blue;
+  &.orderPeopleInput {
+    height : 15px;
+    font-size : 13px;
+    text-align: center;
   }
 `
 

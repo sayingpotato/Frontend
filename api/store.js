@@ -32,11 +32,64 @@ const getSurroundStoreList = async(latitude, longtitude) => {
     return data.data;
 }
 
+const submitOrder = async(form) => {
+    const {data} = await fetcher.post(
+        "api/v1/order",
+        form,
+        {
+        headers: { 
+            'Content-Type': 'application/json',
+        },
+    });
+    return data.data;
+}
+
+const submitReview = async(reviews) => {
+    const {data} = await fetcher.post(
+        `/api/v1/review/content`,
+        reviews,
+        {
+        headers: { 
+            'Content-Type': 'application/json',
+        },
+    });
+    return data.data;
+}
+
+const getOrder = async() => {
+    const {data} = await fetcher.get(
+        `/api/v1/order/detail?offset=0&limit=20`
+    );
+
+    return data.data;
+}
+
+const getSearchList = async(searchKey) => {
+    const {data} = await fetcher.get(
+        `/api/v1/stores/name?name=${searchKey}&offset=0&limit=100`
+    );
+
+    return data.data;
+}
+
+const getDiscountTotal = async() => {
+    const {data} = await fetcher.get(
+        `/api/v1/discount/total`
+    );
+
+    return data.data;
+}
+
 const store = {
     getDailyDiscountStore,
     getMapStoreList,
     getStoreDetail,
-    getSurroundStoreList
+    getSurroundStoreList,
+    submitOrder,
+    submitReview,
+    getOrder,
+    getSearchList,
+    getDiscountTotal
 }
 
 export default store;

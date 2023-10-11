@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Register from '@pages/register'
-import { InfoComponent, InputSpace, RegexComponent } from './style'
+import { InfoComponent, InputSpace, RegexComponent } from '../../../../styles/register/info/id/style'
 import { isSpecialCharacter } from '@hooks/regex'
 import Regex from '@components/regex'
 import Next from '@components/next'

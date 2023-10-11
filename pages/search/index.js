@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Title from '@components/title'
-import Image from 'next/image'
+import Image from '@atoms/image'
 import search from '@public/images/searchBlack.svg'
 import cancel from '@public/images/cancelBlack.svg'
 import { useDebounce } from '@hooks/debounce'
@@ -21,32 +21,17 @@ import {
     MenuDescription,
     MenuMenu,
     MenuNames
- } from './style'
+ } from '../../styles/search/style'
 import SearchButton from '@components/searchButton'
 import SearchInput from '@components/searchInput'
 
-const data = [
-    {pic : '', name : '김밥천국'},
-    {pic : '', name : '김밥천국'},
-    {pic : '', name : '김밥천국'},
-    {pic : '', name : '김밥천국'},
-    {pic : '', name : '김밥천국'},
-    {pic : '', name : '김밥천국'},
-    {pic : '', name : '김밥천국'},
-]
-
-const data2 = [
-    {pic : '', name : '김밥천국', des: '깊은 전통을 자랑하는 궁전김밥!', menu :['원조김밥', '참치김밥','누드김밥']},
-    {pic : '', name : '김밥천국', des: '깊은 전통을 자랑하는 궁전김밥!', menu :['원조김밥', '참치김밥','누드김밥']},
-    {pic : '', name : '김밥천국', des: '깊은 전통을 자랑하는 궁전김밥!', menu :['원조김밥', '참치김밥','누드김밥']},
-    {pic : '', name : '김밥천국', des: '깊은 전통을 자랑하는 궁전김밥!', menu :['원조김밥', '참치김밥','누드김밥']},
-    {pic : '', name : '김밥천국', des: '깊은 전통을 자랑하는 궁전김밥!', menu :['원조김밥', '참치김밥','누드김밥']},
-]
-
+import useGetSearchList from '@hooks/useGetSearchList'
 
 const Search = () => {
+
     const [keyword, setKeyword] = useState('')
-    
+    const [data, setData] = useState();
+
     const onChangeSearchInput = (e) => {
         setKeyword(e.target.value)
     }
@@ -56,10 +41,29 @@ const Search = () => {
     }
 
     const debouncedSetKeyword = useDebounce(() => console.log(keyword), 500)
+    const getSearchList = useGetSearchList(keyword);
+
+    const [storeArray, setStoreArray] = useState()
+    const [menuArray, setMenuArray] = useState()
+
+    useEffect(() => {
+        if (debouncedSetKeyword !== undefined) {
+            setData(getSearchList); 
+            const storeResult = getSearchList && getSearchList.filter(item => item.findByStore === true);
+            setStoreArray(storeResult);
+            const menuResult = getSearchList && getSearchList.filter(item => item.findByStore === false);
+            setMenuArray(menuResult);
+        }
+    }, [keyword]);
 
     const clear = () => {
         setKeyword('')
     }
+
+    console.log(data)
+    console.log(storeArray)
+    console.log(menuArray)
+    
 
     return (
         <>
@@ -70,7 +74,7 @@ const Search = () => {
                     <Image 
                         width={30}
                         height={30}
-                        src={search}
+                        src='/images/searchBlack.svg'
                         alt='search'/>
                     <SearchInput
                         value={keyword}
@@ -80,7 +84,7 @@ const Search = () => {
                         className='cancel'
                         width={24}
                         height={24}
-                        src={cancel}
+                        src='/images/cancelBlack.svg'
                         alt='cancel'/>
                 </FirstSearchDiv>
                 <SecondSearchDiv>
@@ -93,20 +97,20 @@ const Search = () => {
             <StoreName>
                 <SearchTag>상호명</SearchTag>
                 <StoreNameList>
-                    {data.map((item, index) => {
+                    {storeArray && storeArray.map((item, index) => {
                         return (
                         <Store key = {index}>
-                                <StorePicture>
-                                    <Image 
-                                        className='storeImage'
-                                        width={60}
-                                        height={60}
-                                        src='/images/meat1.svg'
-                                        alt='storeImage'/>
-                                </StorePicture>
-                                <StoreNames>
-                                    {item.name}
-                                </StoreNames>
+                            <StorePicture>
+                                <Image 
+                                    className='storeImage'
+                                    width={60}
+                                    height={60}
+                                    src={item.thumbnail}
+                                    alt='storeImage'/>
+                            </StorePicture>
+                            <StoreNames>
+                                {item.name}
+                            </StoreNames>
                         </Store>
                         )
                     })}
@@ -115,24 +119,24 @@ const Search = () => {
             <MenuName>
                 <SearchTag>메뉴명</SearchTag>
                 <MenuNameList>
-                    {data2.map((item, index) => {
+                    {menuArray && menuArray.map((item, index) => {
                         return (
                             <Menu key = {index}>
                                 <Image 
                                     className='menuImage'
                                     width={78}
                                     height={78}
-                                    src='/images/meat1.svg'
+                                    src={item.thumbnail}
                                     alt='storeImage'/>
                                 <MenuInfo>
                                     <MenuNames>
                                     {item.name}
                                     </MenuNames>
-                                    <MenuDescription>
+                                    {/* <MenuDescription>
                                     {item.des}
-                                    </MenuDescription>
+                                    </MenuDescription> */}
                                     <MenuMenu>
-                                        {item.menu.map((item, index) => {
+                                        {item.itemNames.map((item, index) => {
                                             return (
                                                 <p key = {index}>
                                                 {item}
