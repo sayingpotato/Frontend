@@ -55,3 +55,8 @@ export const ReviewData = atom({
     key:"ReviewData",
     default:"",
 })
+
+export const WhoStatus = atom({
+    key:"WhoStatus",
+    default:"",
+})

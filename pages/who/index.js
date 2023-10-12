@@ -9,14 +9,14 @@ import ImageTitle from '@molecules/imageTitle'
 const Who = () => {
     const onClickOwnerRegister = () => {
         Router.push({
-          pathname: '/register/auth/ownerself',
+          pathname: '/ownerlogin',
           query: {  },
         })
     }
 
     const onClickRegister = () => {
         Router.push({
-          pathname: '/register/auth/self',
+          pathname: '/login',
           query: {  },
         })
     }
@@ -37,4 +37,14 @@ const Who = () => {
     )
 }
 
-export default Who;
+Who.Layout = ({children}) => {
+    return (
+        <div>
+            {children}
+        </div>
+    )
+}
+
+Who.Layout.displayName = 'LoginLayout';
+
+export default Who

@@ -81,6 +81,24 @@ const getDiscountTotal = async() => {
     }
 }
 
+const getOwnerStoreList = async() => {
+    try {
+        const data = await storeApi.getOwnerStoreList();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getOwnerOrder = async(id) => {
+    try {
+        const data = await storeApi.getOwnerOrder(id);
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
 const storeService = {
     getDailyDiscountStore,
     getMapStoreList,
@@ -90,7 +108,9 @@ const storeService = {
     submitReview,
     getOrder,
     getSearchList,
-    getDiscountTotal
+    getDiscountTotal,
+    getOwnerStoreList,
+    getOwnerOrder
 }
 
 export default storeService;

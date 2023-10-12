@@ -1,13 +1,15 @@
 import guestService from "services/guest.service";
 import { useSetRecoilState } from "recoil";
-import { LoginStatus } from "@utils/recoil/atom";
+import { LoginStatus, WhoStatus } from "@utils/recoil/atom";
 import Router from "next/router";
 import { setCookie } from "@utils/cookie";
 
 const useLogin = (id, pw) => {
     const setLoginStatus = useSetRecoilState(LoginStatus);
+    const setWhoStatus = useSetRecoilState(WhoStatus);
 
     const login = async () => {
+        setWhoStatus("");
         const { data } = await guestService.login({
             loginId: id,
             password: pw,
@@ -26,6 +28,7 @@ const useLogin = (id, pw) => {
         }
 
         setLoginStatus(true);
+        setWhoStatus("customer");
         setCookie('accessToken', data.accessToken, {
             path: '/'
         }); 

@@ -92,6 +92,28 @@ const StyledButton = styled.button`
     color : white;
     border-radius: 6px;
   }
+
+  &.approvalOrderButton {
+    background-color : #28469C;
+    border : 1.5px solid #28469C;
+    border-radius : 8px;
+    font-size : 8px;
+    font-weight : 500;
+    width : 20vw;
+    height : 5vh;
+    color : white;
+  }
+
+  &.cancelOrderButton {
+    background-color : white;
+    border : 1.5px solid #D9D9D9;
+    border-radius : 8px;
+    font-size : 8px;
+    font-weight : 500;
+    width : 20vw;
+    height : 5vh;
+  }
+  
 `
 
 export { StyledButton };

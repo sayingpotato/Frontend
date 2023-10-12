@@ -43,6 +43,12 @@ const StyledImage = styled.img`
     display: block;
     margin: auto;
   }
+  &.mystoreImage {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: auto;
+  }
 `
 
 export { StyledImage };

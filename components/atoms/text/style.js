@@ -151,16 +151,16 @@ const StyledText = styled.p`
   &.orderStart {
     color : #1BBB01;
     float : right;
-    padding-right : 5px; 
-    font-size : 10px;
+    margin-left : 10%;
+    font-size : 13px;
     font-weight : 800;
   }
 
   &.orderFinish {
     color : #B0B0B0;
     float : right;
-    padding-right : 5px; 
-    font-size : 10px;
+    margin-left : 10%;
+    font-size : 13px;
     font-weight : 800;
   }
   
@@ -175,6 +175,30 @@ const StyledText = styled.p`
     font-size : 23px;
     font-weight : 800;
     text-align : center;
+  }
+
+  &.mystoreName {
+    font-size : 25px;
+    font-weight : 800;
+    text-align : center;
+  }
+
+  &.mystoreDes {
+    font-size : 15px;
+    text-align : center;
+    color : #747474;
+  }
+
+  &.orderDetailTitle { 
+    font-size : 17px;
+    font-weight : 800;
+    margin : 0;
+    color : #28469C;
+  }
+
+  &.orderDetailContent {
+    font-size : 15px;
+    margin : 0;
   }
 
 `
