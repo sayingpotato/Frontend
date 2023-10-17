@@ -151,7 +151,7 @@ const StyledText = styled.p`
   &.orderStart {
     color : #1BBB01;
     float : right;
-    margin-left : 10%;
+    margin-left : 8%;
     font-size : 13px;
     font-weight : 800;
   }
@@ -159,7 +159,7 @@ const StyledText = styled.p`
   &.orderFinish {
     color : #B0B0B0;
     float : right;
-    margin-left : 10%;
+    margin-left : 8%;
     font-size : 13px;
     font-weight : 800;
   }

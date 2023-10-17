@@ -99,6 +99,24 @@ const getOwnerOrder = async(id) => {
     }
 }
 
+const submitAcceptOrder = async(id) => {
+    try {
+        const data = await storeApi.submitAcceptOrder(id);
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const submitRejectOrder = async(id) => {
+    try {
+        const data = await storeApi.submitRejectOrder(id);
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
 const storeService = {
     getDailyDiscountStore,
     getMapStoreList,
@@ -110,7 +128,9 @@ const storeService = {
     getSearchList,
     getDiscountTotal,
     getOwnerStoreList,
-    getOwnerOrder
+    getOwnerOrder,
+    submitAcceptOrder,
+    submitRejectOrder
 }
 
 export default storeService;

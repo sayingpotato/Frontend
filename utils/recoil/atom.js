@@ -60,3 +60,8 @@ export const WhoStatus = atom({
     key:"WhoStatus",
     default:"",
 })
+
+export const StoreId = atom({
+    key:"StoreId",
+    default:"",
+})

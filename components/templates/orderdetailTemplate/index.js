@@ -13,21 +13,33 @@ import {
   SummaryPeopleDiv,
 } from './style'
 
+import { useRecoilState } from "recoil";
+import { StoreId } from "@utils/recoil/atom";
+
 import Text from '@components/atoms/text'
 import Button from '@components/atoms/button'
 import Line from '@components/atoms/line'
 
+import useSubmitAcceptOrder from '@hooks/useSubmitAcceptOrder';
+import useSubmitRejectOrder from '@hooks/useSubmitRejectOrder';
+
 const OrderdetailTemplate = ({data}) => {
 
-  const approvalButtonClick = () => {
-    const selectedReviews = reviewArr.filter((review) => clickedIndex.includes(review.id));
-    const selectedReviewNames = selectedReviews.map((review) => review.name);
-    setSubmitReview({
-      "reviewId": reviewsDetail.id,
-      "reviewContents": selectedReviewNames
-    })
+  const [submitStoreId, setSubmitStoreId] = useRecoilState(StoreId);
 
-    submit();
+  const accept = useSubmitAcceptOrder();
+  const reject = useSubmitRejectOrder();
+
+  const approvalButtonClick = () => {
+    setSubmitStoreId(data.orderId);
+
+    accept();
+  }
+
+  const cancelButtonClick = () => {
+    setSubmitStoreId(data.orderId);
+
+    reject();
   }
 
   return (
@@ -55,8 +67,8 @@ const OrderdetailTemplate = ({data}) => {
           ))}
         </PriceDiv>
         <ButtonDiv>
-          {data.orderStatus === "ORDER" ? <Button text="거절" className="cancelOrderButton" onClick /> : null}
-          {data.orderStatus === "ORDER" ? <Button text="확인" className="approvalOrderButton" onClick={approvalButtonClick} /> : null}
+          {data.orderStatus === "ORDER" ? <Button text="거절" className="cancelOrderButton" onClick={cancelButtonClick} /> : null}
+          {data.orderStatus === "ORDER" ? <Button text="승인" className="approvalOrderButton" onClick={approvalButtonClick} /> : null}
         </ButtonDiv>
       </ContentDiv>
 

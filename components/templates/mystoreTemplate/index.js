@@ -6,8 +6,6 @@ import { WholeDiv } from './style';
 
 const MystoreTemplate = ({data}) => {
 
-    console.log(data)
-
     const mystoreDetailButton = () => {
         Router.push({
             pathname: '/orderdetail',

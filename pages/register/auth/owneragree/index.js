@@ -9,7 +9,7 @@ import {AgreeComponent, OneAgree} from "../../../../styles/register/auth/agree/s
 import { RegisterLevel } from "@utils/recoil/atom.js"
 import { useSetRecoilState} from "recoil"
 
-const ownerAgree = () => {
+const OwnerAgree = () => {
    const setRegisterLevel = useSetRecoilState(RegisterLevel);
    const [state, setState] = useState(1);
    const [useAgree, setUseAgree] = useState(false);
@@ -78,7 +78,7 @@ const ownerAgree = () => {
      </Register>
   )
 }
-ownerAgree.Layout = ({ children }) => {
+OwnerAgree.Layout = ({ children }) => {
    return (
       <div>
        {children}
@@ -86,6 +86,6 @@ ownerAgree.Layout = ({ children }) => {
    );
  };
  
- ownerAgree.Layout.displayName = 'RegisterLayout';
+OwnerAgree.Layout.displayName = 'RegisterLayout';
 
-export default ownerAgree
+export default OwnerAgree

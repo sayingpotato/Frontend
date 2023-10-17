@@ -96,6 +96,30 @@ const getOwnerOrder = async(id) => {
     return data.data;
 }
 
+const submitAcceptOrder = async(id) => {
+    const {data} = await fetcher.post(
+        `/api/v1/order/accept`,
+        id,
+        {
+        headers: { 
+            'Content-Type': 'application/json',
+        },
+    });
+    return data.data;
+}
+
+const submitRejectOrder = async(id) => {
+    const {data} = await fetcher.post(
+        `/api/v1/order/reject`,
+        id,
+        {
+        headers: { 
+            'Content-Type': 'application/json',
+        },
+    });
+    return data.data;
+}
+
 const store = {
     getDailyDiscountStore,
     getMapStoreList,
@@ -107,7 +131,9 @@ const store = {
     getSearchList,
     getDiscountTotal,
     getOwnerStoreList,
-    getOwnerOrder
+    getOwnerOrder,
+    submitAcceptOrder,
+    submitRejectOrder,
 }
 
 export default store;
