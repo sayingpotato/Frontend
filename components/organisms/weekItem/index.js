@@ -39,8 +39,8 @@ const WeekItem = (props) => {
     // nameArr의 각 name 별로 count의 합계를 계산하여 countArr에 저장
     const countArr = data && nameArr.map(name => {
         const sum = data
-        .filter(item => item.name === name)
-        .reduce((total, item) => total + item.count, 0);
+            .filter(item => item.name === name)
+            .reduce((total, item) => total + item.count, 0);
         return sum ;
     });
     
@@ -58,7 +58,7 @@ const WeekItem = (props) => {
             },
             title: {
                 display: true,
-                text: '일주간 아이템 별 총 개수',
+                text: '일주간 아이템 별 총 판매 개수',
             },
         },
     };
@@ -67,7 +67,7 @@ const WeekItem = (props) => {
         labels: nameArr,
         datasets: [
             {
-                label: '일주간 아이템 별 총 개수',
+                label: '일주간 아이템 별 총 판매 개수',
                 data: countArr,
                 borderColor: 'rgb(53, 162, 235)',
                 backgroundColor: 'rgba(53, 162, 235, 0.5)',

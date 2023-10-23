@@ -26,7 +26,7 @@ const MystoreTemplate = ({data}) => {
 
     const predictionOnClick = () => {
         router.push({
-            pathname: '/predictio',
+            pathname: '/prediction',
             query: { id: data.storeId },
         })
     }

@@ -2,7 +2,7 @@ import {predictionApi} from "api"
 
 const getDailyItem = async(id) => {
     try {
-        const data = await statisticsApi.getWeekItem(id);
+        const data = await predictionApi.getDailyItem(id);
         return data;
     } catch (error) {
         throw error;
@@ -11,7 +11,7 @@ const getDailyItem = async(id) => {
 
 const getDailyItemTomorrow = async(id) => {
     try {
-        const data = await statisticsApi.getWeekItem(id);
+        const data = await predictionApi.getDailyItemTomorrow(id);
         return data;
     } catch (error) {
         throw error;
@@ -20,7 +20,7 @@ const getDailyItemTomorrow = async(id) => {
 
 const getProfit = async(id) => {
     try {
-        const data = await statisticsApi.getWeekItem(id);
+        const data = await predictionApi.getProfit(id);
         return data;
     } catch (error) {
         throw error;
@@ -29,7 +29,7 @@ const getProfit = async(id) => {
 
 const getProfitTomorrow = async(id) => {
     try {
-        const data = await statisticsApi.getWeekItem(id);
+        const data = await predictionApi.getProfitTomorrow(id);
         return data;
     } catch (error) {
         throw error;

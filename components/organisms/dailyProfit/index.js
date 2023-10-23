@@ -15,7 +15,7 @@ import {
 } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 
-import useGetDailyRevenue from '@hooks/useGetDailyRevenue';
+import useGetDailyProfit from '@hooks/useGetDailyProfit';
 
 ChartJS.register(
   LinearScale,
@@ -29,24 +29,16 @@ ChartJS.register(
   BarController
 );
 
-const DailyRevenue = (props) => {
+const DailyProfit = (props) => {
 
     const storeId = props.id;
 
     const [data, setData] = useState("");
-    const getDailyRevenue = useGetDailyRevenue(storeId);
+    const getDailyProfit = useGetDailyProfit(storeId);
 
     useEffect(() => { 
-        setData(getDailyRevenue); 
-    },[getDailyRevenue]);
-
-    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
-    const orderCountsByDay = daysOfWeek.map(day => {
-        const dayData = data && data.filter(dataPoint => dataPoint.day === day);
-        const orderCountSum = dayData && dayData.reduce((total, dataPoint) => total + dataPoint.orderCount, 0);
-        return orderCountSum;
-    });
+        setData(getDailyProfit); 
+    },[getDailyProfit]);
 
     const options = {
         responsive: true,
@@ -61,13 +53,16 @@ const DailyRevenue = (props) => {
         },
     };
 
+    const labels = data && data.map((dataPoint) => dataPoint.time);
+    const profitData = data && data.map((dataPoint) => dataPoint.profit);
+
     const chartData = {
-        labels: daysOfWeek,
+        labels: labels,
         datasets: [
             {
                 type: 'line',
-                label: '요일별 총 판매 개수',
-                data: orderCountsByDay,
+                label: '요일별 총 개수',
+                data: profitData,
                 // backgroundColor: 'rgba(53, 162, 235, 0.5)',
                 backgroundColor: 'rgba(53, 162, 235, 0.5)',
                 borderWidth: 2,
@@ -81,4 +76,4 @@ const DailyRevenue = (props) => {
     )
 }
 
-export default DailyRevenue
+export default DailyProfit
