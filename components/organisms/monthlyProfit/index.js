@@ -38,10 +38,11 @@ const MonthlyProfit = (props) => {
     const profitData = data && data.map((dataPoint) => dataPoint.profit);
 
     const options = {
+        maintainAspectRatio: false,
         responsive: true,
         plugins: {
             legend: {
-                position: 'bottom',
+                display: false,
             },
             title: {
                 display: true,
@@ -54,17 +55,18 @@ const MonthlyProfit = (props) => {
         labels: labels,
         datasets: [
             {
-                label: '월별 수입 통계',
                 data: profitData,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1,
+                backgroundColor: '#A3BAFF',
+                borderColor: '#28469C',
+                borderWidth: 3,
             },
         ],
     }
 
     return (
-        <Radar data={chartData} width={30} height={30} options={{ maintainAspectRatio: false }} />
+        <div style={{margin : "0 auto", height:"400px"}}>
+            <Radar data={chartData} width={30} height={30} options={options} />
+        </div>
     )
 }
 

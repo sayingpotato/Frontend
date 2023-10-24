@@ -201,6 +201,18 @@ const StyledText = styled.p`
     margin : 0;
   }
 
+  &.predictionTitle {
+    font-size : 13px;
+    text-align : center;
+  }
+
+  &.predictionContent {
+    font-size : 15px;
+    text-align : center;
+    font-weight : 800;
+    color : #28469C;
+  } 
+
 `
 
 export { StyledText };

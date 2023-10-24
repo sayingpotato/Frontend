@@ -1,6 +1,13 @@
 import React from 'react';
 import { useEffect, useState } from "react";
 
+import {
+    WholeDiv,
+    SemiDiv,
+    Div,
+} from './style'
+import Text from '@components/atoms/text';
+
 import useGetProfitTomorrow from '@hooks/useGetProfitTomorrow';
 
 const ProfitTomorrow = (props) => {
@@ -16,16 +23,32 @@ const ProfitTomorrow = (props) => {
 
 
     return (
-        <>
-            <p>totalCount</p>
-            <h1>{data.totalCount}</h1>
-            <p>averageCount</p>
-            <h1>{data.averageCount}</h1>
-            <p>totalPrice</p>
-            <h1>{data.totalPrice}</h1>
-            <p>averagePrice</p>
-            <h1>{data.averagePrice}</h1>
-        </>
+        <WholeDiv>
+            <SemiDiv>
+                <Div>
+                    <Text text="총 판매 개수" className="predictionTitle" />
+                    <Text text={data.totalCount} className="predictionContent" />
+                </Div>
+
+                <Div>
+                    <Text text="평균 판매 개수" className="predictionTitle" />
+                    <Text text={data.averageCount} className="predictionContent" />
+                </Div>
+            </SemiDiv>
+
+            <SemiDiv>
+                <Div>
+                    <Text text="총 금액" className="predictionTitle" />
+                    <Text text={data.totalPrice} className="predictionContent" />
+                </Div>
+
+                <Div>
+                    <Text text="평균 금액" className="predictionTitle" />
+                    <Text text={data.averagePrice} className="predictionContent" />
+                </Div>
+            </SemiDiv>
+            
+        </WholeDiv>
     )
 }
 

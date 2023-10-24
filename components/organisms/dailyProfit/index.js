@@ -44,7 +44,7 @@ const DailyProfit = (props) => {
         responsive: true,
         plugins: {
             legend: {
-                position: 'bottom',
+                display: false,
             },
             title: {
                 display: true,
@@ -61,10 +61,8 @@ const DailyProfit = (props) => {
         datasets: [
             {
                 type: 'line',
-                label: '요일별 총 개수',
                 data: profitData,
-                // backgroundColor: 'rgba(53, 162, 235, 0.5)',
-                backgroundColor: 'rgba(53, 162, 235, 0.5)',
+                backgroundColor: '#28469C',
                 borderWidth: 2,
                 fill: false,
             },

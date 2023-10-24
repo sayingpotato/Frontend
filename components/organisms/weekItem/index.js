@@ -54,11 +54,11 @@ const WeekItem = (props) => {
         responsive: true,
         plugins: {
             legend: {
-                position: 'bottom',
+                display: false,
             },
             title: {
                 display: true,
-                text: '일주간 아이템 별 총 판매 개수',
+                text: '일주일 간 아이템 별 총 판매 개수',
             },
         },
     };
@@ -67,10 +67,9 @@ const WeekItem = (props) => {
         labels: nameArr,
         datasets: [
             {
-                label: '일주간 아이템 별 총 판매 개수',
                 data: countArr,
-                borderColor: 'rgb(53, 162, 235)',
-                backgroundColor: 'rgba(53, 162, 235, 0.5)',
+                borderColor: '#28469C',
+                backgroundColor: '#28469C',
             },
         ],
     }

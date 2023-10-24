@@ -47,6 +47,7 @@ const DailyItemTomorrow = (props) => {
         return color;
     }
 
+    const objectLength = data && Object.keys(data).length;
     const labels = data && data.map((dataPoint) => dataPoint.itemName);
     const itemCountData = data && data.map((dataPoint) => dataPoint.itemCount);
 
@@ -56,14 +57,7 @@ const DailyItemTomorrow = (props) => {
             {
                 data: itemCountData,
                 borderWidth: 2,
-                backgroundColor: [
-                    getRandomColor(),
-                    getRandomColor(),
-                    getRandomColor(),
-                    getRandomColor(),
-                    getRandomColor(),
-                    getRandomColor(),
-                ],
+                backgroundColor: Array(objectLength).fill().map(() => getRandomColor()),
             },
         ],
     }

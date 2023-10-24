@@ -52,11 +52,11 @@ const DailyRevenue = (props) => {
         responsive: true,
         plugins: {
             legend: {
-                position: 'bottom',
+                display: false,
             },
             title: {
                 display: true,
-                text: '일별 수입 통계',
+                text: '요일별 총 판매 개수',
             },
         },
     };
@@ -66,10 +66,8 @@ const DailyRevenue = (props) => {
         datasets: [
             {
                 type: 'line',
-                label: '요일별 총 판매 개수',
                 data: orderCountsByDay,
-                // backgroundColor: 'rgba(53, 162, 235, 0.5)',
-                backgroundColor: 'rgba(53, 162, 235, 0.5)',
+                backgroundColor: '#28469C',
                 borderWidth: 2,
                 fill: false,
             },
