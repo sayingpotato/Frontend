@@ -39,7 +39,6 @@ const MenuImages = ({menuData}) => {
     const submitOrderForm = useSubmitOrder();
 
     const submitOrderMenu = () => {
-        console.log("주문하기");
         let sum = 0;
         
         const selectedObjects = selectedMenuIds.map(targetId => {
@@ -69,7 +68,7 @@ const MenuImages = ({menuData}) => {
         })
 
         submitOrderForm();
-        router.push("/order");
+        router.push("/map");
         
     }
 

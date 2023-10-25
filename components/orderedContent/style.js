@@ -2,8 +2,6 @@ import styled from 'styled-components'
 
 const Div = styled.div`
   background-color: white;
-  margin-top: 20px;
-  margin-bottom: 20px;
   padding: 2%;
   height: ${(props) => (props.state === true ? '35vh' : '20vh')};
 `
@@ -43,7 +41,7 @@ const MoreButton = styled.button`
   border: 1px solid black;
   background-color: white;
   border-radius: 8px;
-  font-size: 3px;
+  font-size: 8px;
   font-weight: 400;
   width: 20vw;
   height: 4vh;

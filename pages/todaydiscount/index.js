@@ -32,7 +32,9 @@ const TodayDiscount = () => {
     setPrevDay(prevName)
     setNextDay(nextName)
     setNowDay(todayName)
-    setEnglishNowDay("MON") // DB에 데이터 삽입 이후 변경 예정 
+    const englishNowDayValue = daysOfWeek.find((day) => day[0] === todayName)[1];
+    setEnglishNowDay(englishNowDayValue);
+    setData(getDailyDiscountStore);
   }, [])
   
   const getDailyDiscountStore = useGetDailyDiscountStore(englishNowDay);

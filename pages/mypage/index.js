@@ -18,8 +18,6 @@ const Mypage = () => {
     setDiscountInfo(getDiscountTotal);
   },[getNickName, getDiscountTotal]);
 
-  console.log(discountInfo)
-
   return (
     <>
       <Title text="마이페이지" />

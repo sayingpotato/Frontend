@@ -16,7 +16,6 @@ const useLogin = (id, pw) => {
         });
         
         if (!data) {
-            console.log("다시 입력해주세요");
             return ;
         }
 

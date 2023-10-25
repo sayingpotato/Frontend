@@ -21,7 +21,6 @@ export default function College(){
 
     useEffect(() => {
         if (imageSource) {
-            console.log(imageSource)
             setState(2);
         return ;
         }
