@@ -4,7 +4,7 @@ import { useState } from 'react';
 import DailyItem from '@components/organisms/dailyItem';
 import DailyItemTomorrow from '@components/organisms/dailyItemTomorrow';
 import Profit from '@components/organisms/profit';
-import ProfitTommorow from '@components/organisms/profitTomorrow';
+import ProfitTomorrow from '@components/organisms/profitTomorrow';
 import Title from '@components/molecules/title';
 import Line from '@components/line';
 import InlineButton from "@molecules/inlineButton"
@@ -47,7 +47,7 @@ const Prediction = () => {
                 <>
                     <DailyItemTomorrow id={id} />
                     <Line />
-                    <ProfitTommorow id={id} />
+                    <ProfitTomorrow id={id} />
                 </>
             )}
         </>

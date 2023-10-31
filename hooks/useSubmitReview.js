@@ -6,7 +6,11 @@ const useSubmitReview = () => {
     const reviewData = useRecoilValue(ReviewData);
 
     const submitReview = async() => {
-        const data = await storeService.submitReview(reviewData);
+        let data = '';
+        if (reviewData !== '') {
+            data = await storeService.submitReview(reviewData);
+        }
+        
         return data;
     }
 

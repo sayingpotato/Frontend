@@ -6,7 +6,11 @@ const useSubmitOrder = () => {
     const orderData = useRecoilValue(OrderData);
 
     const submitOrder = async() => {
-        const data = await storeService.submitOrder(orderData);
+        let data = '';
+        if (orderData !== '') {
+            data = await storeService.submitOrder(orderData);
+        }
+        
         return data;
     }
 

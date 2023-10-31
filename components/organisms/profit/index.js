@@ -20,30 +20,35 @@ const Profit = (props) => {
         setData(getProfit); 
     },[getProfit]);
 
+    const totalCountText = data && data.totalCount + "건";
+    const averageCountText = data && data.averageCount + "건";
+    const totalPriceText = data && data.totalPrice.toLocaleString() + "원";
+    const averagePriceText = data && data.averagePrice.toLocaleString() + "원";
+
 
     return (
         <WholeDiv>
             <SemiDiv>
                 <Div>
                     <Text text="총 판매 개수" className="predictionTitle" />
-                    <Text text={data.totalCount} className="predictionContent" />
+                    <Text text={totalCountText} className="predictionContent" />
                 </Div>
 
                 <Div>
                     <Text text="평균 판매 개수" className="predictionTitle" />
-                    <Text text={data.averageCount} className="predictionContent" />
+                    <Text text={averageCountText} className="predictionContent" />
                 </Div>
             </SemiDiv>
 
             <SemiDiv>
                 <Div>
                     <Text text="총 금액" className="predictionTitle" />
-                    <Text text={data.totalPrice} className="predictionContent" />
+                    <Text text={totalPriceText} className="predictionContent" />
                 </Div>
 
                 <Div>
                     <Text text="평균 금액" className="predictionTitle" />
-                    <Text text={data.averagePrice} className="predictionContent" />
+                    <Text text={averagePriceText} className="predictionContent" />
                 </Div>
             </SemiDiv>
             

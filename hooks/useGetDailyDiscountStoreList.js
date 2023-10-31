@@ -6,7 +6,7 @@ const useGetDailyDiscountStore = (date) => {
     
     useEffect(() => {
         const getStore = async() => {
-            if (date !== undefined) {
+            if (date !== undefined && date !== '') {
                 const fetchData = await storeService.getDailyDiscountStore(date); 
                 setData(fetchData);
             }

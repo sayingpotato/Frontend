@@ -213,6 +213,34 @@ const StyledText = styled.p`
     color : #28469C;
   } 
 
+  &.discountInfoTitle {
+    font-size : 15px;
+    margin-left : 10px; 
+    color: #28469c;
+    font-weight : 800;
+  }
+
+  &.discountInfoDay {
+    font-size : 13px;
+    font-weight : 400;
+    margin : 0;
+  }
+
+  &.discountInfoPeople {
+    font-size : 13px;
+    font-weight : 900;
+    margin : 0;
+  }
+
+  &.discountInfoRatio {
+    color: white;
+    border: 1px solid #ff2e2e;
+    border-radius: 1px;
+    background-color: #ff2e2e;
+  }
+
+  
+
 `
 
 export { StyledText };
