@@ -32,4 +32,21 @@ const PeopleButtons = styled.div`
   justify-content: center;
 `
 
-export { MenuImagesDiv, MenuWholeImagesDiv, MenuImagesContentDiv, ImagesDiv, PeopleButtons };
+const ConfirmOrderDiv = styled.div`
+  margin-top : 10px;
+  margin-bottom : 10px;
+  display: flex;
+  justify-content: center;
+  gap : 30px;
+`
+
+const ConfirmOrderContentDiv = styled.div`
+  display : flex;
+  flex-direction : column;
+  justify-content : center;
+  border : 1px solid black;
+  border-radius : 3px;
+  text-align : center;
+`
+
+export { MenuImagesDiv, MenuWholeImagesDiv, MenuImagesContentDiv, ImagesDiv, PeopleButtons, ConfirmOrderDiv, ConfirmOrderContentDiv };

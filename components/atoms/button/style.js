@@ -139,6 +139,21 @@ const StyledButton = styled.button`
     border: 0px solid ${(props) => (props.state === 'tommorowPrediction' ? 'black' : 'white')};
     border-radius: 3px;
   }
+
+  &.checkOrderButton {
+    border: 1px solid white;
+    border-radius: 6px;
+    background-color : green;
+    color : white;
+    width: 300px;
+    height : 40px;
+    display: block;
+    margin : 0 auto;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: "Pretendard Variable";
+  }
   
 `
 

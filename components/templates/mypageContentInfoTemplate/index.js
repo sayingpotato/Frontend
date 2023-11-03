@@ -4,14 +4,23 @@ import MypageDiscountInfo from "@organisms/mypageDiscountInfo"
 import MypageUserInfo from '@templates/mypageUserInfoTemplates';
 import MypageLinkButtons from '@organisms/mypageLinkButtons';
 
-const MypageContentInfoTemplate = ({name, discountData}) => {
+import { useRecoilValue } from "recoil";
+import { WhoStatus } from "@utils/recoil/atom";
+
+const MypageContentInfoTemplate = ({info, discountData, discountDataDetail}) => {
+  const whoStatus = useRecoilValue(WhoStatus);
     
   return (
     <>
-      <MypageUserInfo name={name} totalMoney={discountData.totalDiscountPrice}/>
+      {
+        whoStatus === "customer" ? <MypageUserInfo name={info.nickname} totalMoney={discountData.totalDiscountPrice}/> : <MypageUserInfo name={info.nickname} totalMoney={0}/>
+      }
+      
       <MypageContentInfoTemplateDiv>
-          <MypageDiscountInfo discountData={discountData} />
-          <MypageLinkButtons />
+          {
+            whoStatus === "customer" ? <MypageDiscountInfo discountDataDetail={discountDataDetail} /> : null
+          }
+          <MypageLinkButtons info={info} />
       </MypageContentInfoTemplateDiv>
     </>
       

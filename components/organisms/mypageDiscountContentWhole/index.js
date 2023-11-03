@@ -4,17 +4,17 @@ import Image from '@atoms/image';
 import InlineText from '@molecules/inlineText';
 
 
-const MypageDiscountInfo = ({discountData}) => {
+const MypageDiscountInfo = ({discountDataDetail}) => {
 
     return (
         <DiscountContentWholeDiv>
-        {/* {discountData.map((item, index) => {
+        {discountDataDetail && discountDataDetail.map((item, index) => {
         return (
             <DiscountContent key={index}>
                 <Image src="images/coin.svg" alt="돈 사진"/>
-                <InlineText divClassName="discountContentValue" textOne={item.value.name} textTwo={item.value.discountMoney} textOneClassName="discountContentName" textTwoClassName="discountContentMoney" />
+                <InlineText divClassName="discountContentValue" textOne={item.storeName} textTwo={item.discountPrice.toLocaleString()} textOneClassName="discountContentName" textTwoClassName="discountContentMoney" />
             </DiscountContent>
-        )})} */}
+        )})}
         </DiscountContentWholeDiv>
     );
 };

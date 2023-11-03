@@ -1,19 +1,20 @@
-import storeService from "services/store.service";
 import { useEffect, useState } from "react";
+import storeService from "services/store.service";
 
-const useGetSearchList = (searchKey) => {
-    const [data, setData] = useState("");
-
-   useEffect(() => {
+const useGetSearchList = (searchKeyword) => {
+    const [data, setData] = useState(""); 
+    
+    useEffect(() => {
         const getSearchList = async() => {
-            if (searchKey !== "") {
-                const fetchData = await storeService.getSearchList(searchKey);
+            if (searchKeyword !== undefined) {
+                const fetchData = await storeService.getSearchList(searchKeyword);
                 setData(fetchData);
-            }   
+            }
         }
+
         getSearchList();
-    }, [searchKey]);
-   
+    }, [searchKeyword]);
+    
     return data;
 }
 

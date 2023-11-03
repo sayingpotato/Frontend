@@ -30,11 +30,16 @@ const KaKaoMap = () => {
   // 현 위치 (최초 useEffect 함수 또는 새로고침 버튼)
   // const [currentCenter, setCurrentCenter] = useState({ lat: 0, lng: 0 })
   const [currentCenter, setCurrentCenter] = useState({ lat: 36.62517, lng: 127.455409 })
+  
   // 지도의 중심 값 (최초에는 현 위치를 기준 -> 지도를 움직일 때마다 변경 또는 마커를 클릭할 때 변경)
   // const [center, setCenter] = useState({ lat: 0, lng: 0 })
   const [center, setCenter] = useState({ lat: 36.62517, lng: 127.455409 })
   // 라우터 중심값
   const [routerCenter, setRouterCenter] = useState({ lat: goBackrouterValue[0], lng: goBackrouterValue[1] })
+
+  console.log("현 위치 (최초 useEffect 함수 또는 새로고침 버튼)", currentCenter.lat, currentCenter.lng);
+  console.log("지도의 중심 값 (최초에는 현 위치를 기준 -> 지도를 움직일 때마다 변경 또는 마커를 클릭할 때 변경)", center.lat, center.lng);
+  console.log("라우터 중심값", routerCenter.lat, routerCenter.lng);
 
   const [markerInfo, setMarkerInfo] = useState({
     id : '',

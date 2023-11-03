@@ -26,6 +26,7 @@ const StoreList = () => {
   const router = useRouter();
   const [latitude, longtitude] = [router['query']['lat'], router['query']['lng']];
   const getMapStoreList = useGetSurroundStoreList(latitude, longtitude);
+  console.log("내 주변 가게 중심 값", latitude, longtitude)
 
   useEffect(() => {
     if (latitude !== undefined && longtitude !== undefined) {

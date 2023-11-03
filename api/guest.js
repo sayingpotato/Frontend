@@ -44,9 +44,25 @@ const submitStudentCard = async(form) => {
     return data;
 }
 
-const getNickName = async() => {
+const getInfo = async() => {
     const {data} = await fetcher.get(
         `/api/v1/mypage`
+    );
+
+    return data.data;
+}
+
+const getOwnerInfo = async() => {
+    const {data} = await fetcher.get(
+        `/api/v1/owner/info`
+    );
+
+    return data.data;
+}
+
+const getDiscountDetail = async() => {
+    const {data} = await fetcher.get(
+        `/api/v1/discount/detail`
     );
 
     return data.data;
@@ -58,7 +74,9 @@ const guest = {
     login,
     ownerLogin,
     submitStudentCard,
-    getNickName
+    getInfo,
+    getOwnerInfo,
+    getDiscountDetail
 }
 
 export default guest;

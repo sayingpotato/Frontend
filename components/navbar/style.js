@@ -8,6 +8,7 @@ const NavbarComponent = styled.div`
   left: 0;
   right: 0;
   align-items: center;
+  height: 80px;
 
   a {
     text-decoration: none;

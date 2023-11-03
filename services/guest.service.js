@@ -49,9 +49,27 @@ const submitStudentCard = async(form) => {
     } 
 }
 
-const getNickName = async() => {
+const getInfo = async() => {
     try {
-        const data = await guestApi.getNickName();
+        const data = await guestApi.getInfo();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getOwnerInfo = async() => {
+    try {
+        const data = await guestApi.getOwnerInfo();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getDiscountDetail = async() => {
+    try {
+        const data = await guestApi.getDiscountDetail();
         return data;
     } catch (error) {
         throw error;
@@ -65,7 +83,9 @@ const guestService = {
     submitRegister,
     submitOwnerRegister,
     submitStudentCard,
-    getNickName
+    getInfo,
+    getOwnerInfo,
+    getDiscountDetail
 }
 
 export default guestService;

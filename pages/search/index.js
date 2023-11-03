@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { useRecoilState } from "recoil";
+
 import Title from '@components/title'
 import Image from '@atoms/image'
 import search from '@public/images/searchBlack.svg'
@@ -27,43 +29,42 @@ import SearchInput from '@components/searchInput'
 
 import useGetSearchList from '@hooks/useGetSearchList'
 
+import { SearchKeyword } from "@utils/recoil/atom";
+
 const Search = () => {
 
     const [keyword, setKeyword] = useState('')
     const [data, setData] = useState();
+    
+    const [realKeyword, setRealKeyword] = useState("00000");
+    const getSearchList = useGetSearchList(realKeyword);
+    
 
     const onChangeSearchInput = (e) => {
         setKeyword(e.target.value)
     }
     
     const onClickSearchButton = () => {
-        debouncedSetKeyword()
+        setRealKeyword(keyword);
     }
 
-    const debouncedSetKeyword = useDebounce(() => console.log(keyword), 500)
-    const getSearchList = useGetSearchList(keyword);
+    useEffect(() => {
+        const storeResult = getSearchList && getSearchList.filter(item => item.findByStore === true);
+        setStoreArray(storeResult);
+        const menuResult = getSearchList && getSearchList.filter(item => item.findByStore === false);
+        setMenuArray(menuResult);
+    }, [getSearchList])
+
+    // const debouncedSetKeyword = useDebounce(() => console.log(keyword), 500)
+
 
     const [storeArray, setStoreArray] = useState()
     const [menuArray, setMenuArray] = useState()
 
-    useEffect(() => {
-        if (debouncedSetKeyword !== undefined) {
-            setData(getSearchList); 
-            const storeResult = getSearchList && getSearchList.filter(item => item.findByStore === true);
-            setStoreArray(storeResult);
-            const menuResult = getSearchList && getSearchList.filter(item => item.findByStore === false);
-            setMenuArray(menuResult);
-        }
-    }, [keyword]);
-
     const clear = () => {
         setKeyword('')
-    }
-
-    console.log(data)
-    console.log(storeArray)
-    console.log(menuArray)
-    
+        setRealKeyword('00000')
+    }   
 
     return (
         <>

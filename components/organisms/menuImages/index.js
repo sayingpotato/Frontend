@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import router from "next/router";
 import { useRecoilState } from "recoil";
 
-import { MenuImagesDiv, MenuWholeImagesDiv, MenuImagesContentDiv, ImagesDiv, PeopleButtons } from './style';
+import { MenuImagesDiv, MenuWholeImagesDiv, MenuImagesContentDiv, ImagesDiv, PeopleButtons, ConfirmOrderDiv, ConfirmOrderContentDiv } from './style';
+
+import date from '@utils/date'
 
 import { OrderData } from "@utils/recoil/atom";
 
@@ -14,7 +16,7 @@ import MenuInfo from '@organisms/menuInfo'
 
 import useSubmitOrder from '@hooks/useSubmitOrder'
 
-const MenuImages = ({menuData}) => {
+const MenuImages = ({menuData, discountData}) => {
 
     const [submitOrderData, setSubmitOrderData] = useRecoilState(OrderData);
 
@@ -38,7 +40,37 @@ const MenuImages = ({menuData}) => {
 
     const submitOrderForm = useSubmitOrder();
 
-    const submitOrderMenu = () => {
+    // 오늘의 날짜 기준 할인 array 추출
+    const daysOfWeek = [["일요일", "SUN"], ["월요일", "MON"], ["화요일", "TUE"], ["수요일", "WED"], ["목요일", "THU"], ["금요일", "FRI"], ["토요일", "SAT"]];
+    const dateIndex = date();
+    const todayName = daysOfWeek[dateIndex][1]
+    const todayDiscountInfo = discountData.filter(item => item.discountDay === todayName);
+    
+    const [totalPrice, setTotalPrice] = useState("");
+    const [discountPrice, setDiscountPrice] = useState("");
+
+    const ConfirmOrderData = () => {
+        return (
+            <>
+                {totalPrice && discountPrice && <ConfirmOrderDiv>
+                    <ConfirmOrderContentDiv>
+                        <Text text="총 주문 금액" className="confirmOrderTitle" />
+                        <Text text={totalPrice.toLocaleString() + "원"} />
+                    </ConfirmOrderContentDiv>
+                    <ConfirmOrderContentDiv>
+                        <Text text="총 할인 금액" className="confirmOrderTitle" />
+                        <Text text={discountPrice.toLocaleString() + "원"} />
+                    </ConfirmOrderContentDiv>
+                </ConfirmOrderDiv>
+                }
+                
+                
+                {totalPrice && <Button className="orderButton" onClick={submitOrderMenu}>주문 하기</Button>}
+            </>
+        )
+    }
+
+    const checkOrderMenu = () => {
         let sum = 0;
         
         const selectedObjects = selectedMenuIds.map(targetId => {
@@ -47,7 +79,7 @@ const MenuImages = ({menuData}) => {
         });
 
         if (selectedObjects.length === 0) {
-            alert("하나 이상 주문하세요.")
+            alert("하나 이상 주문하세요.");
         } else {
             selectedObjects.forEach(obj => {
                 if (obj) {
@@ -56,21 +88,48 @@ const MenuImages = ({menuData}) => {
             }
         });}
 
+        if (people <= 0) {
+            alert("주문 인원은 최소 한 명입니다.");
+        }
+        else {
+            const findClosestRow = (arr, target) => {
+                return arr.reduce((closest, current) => {
+                    const closestDiff = Math.abs(closest.people - target);
+                    const currentDiff = Math.abs(current.people - target);
+                    return currentDiff < closestDiff ? current : closest;
+                });
+            };
+
+            const closestRow = findClosestRow(todayDiscountInfo, people);
+            const discountValue = closestRow.discountRatio;
+            const discountRatioPrice = sum * discountValue / 100;
+
+            setTotalPrice(sum)
+            setDiscountPrice(discountRatioPrice)
+            
+        }
+    }
+
+    const submitOrderMenu = () => {
         setSubmitOrderData({
             "storeId": parseInt(idParam),
-            "totalPrice": sum,
+            "totalPrice": totalPrice,
             "totalPeople": people,
-            "discountPrice": 0,
+            "discountPrice": discountPrice,
             "itemIds": selectedMenuIds,
             "itemOptionIds": [
                 0
             ]
         })
-
-        submitOrderForm();
-        router.push("/map");
-        
     }
+
+    useEffect(() => {
+        if (submitOrderData) {
+            submitOrderForm();
+            router.push("/map");
+            setSubmitOrderData("");
+        } 
+    }, [submitOrderData])
 
     const handleInputChange = (e) => {
         setPeople(e.target.value);
@@ -110,7 +169,10 @@ const MenuImages = ({menuData}) => {
                     </PeopleButtons>
                 </div>
                 <br />
-                <Button className="orderButton" onClick={submitOrderMenu}>주문하기</Button>
+                
+                <Button className="checkOrderButton" onClick={checkOrderMenu}>주문 확인</Button>
+                <ConfirmOrderData />
+                
             </MenuImagesDiv>
         </>
     );

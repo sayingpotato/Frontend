@@ -4,7 +4,7 @@ import { getCookie } from "@utils/cookie";
 
 const fetcher = axios.create({
     baseURL : NEXT_PUBLIC_HOST,
-    timeout: 25000
+    timeout: 50000
 })
 
 fetcher.interceptors.request.use((config) => {

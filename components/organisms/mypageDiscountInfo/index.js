@@ -3,12 +3,12 @@ import { MypageDiscountInfoDiv } from './style';
 import Title from '@molecules/title';
 import MypageDiscountContentWhole from "@organisms/mypageDiscountContentWhole"
 
-const MypageDiscountInfo = ({discountData}) => {
+const MypageDiscountInfo = ({discountDataDetail}) => {
 
     return (
         <MypageDiscountInfoDiv>
             <Title text="최근 받은 할인" className="mypageDiscountTitle"/>
-            <MypageDiscountContentWhole discountData={discountData} />
+            <MypageDiscountContentWhole discountDataDetail={discountDataDetail} />
         </MypageDiscountInfoDiv>
     );
 };

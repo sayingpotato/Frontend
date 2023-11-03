@@ -239,8 +239,33 @@ const StyledText = styled.p`
     background-color: #ff2e2e;
   }
 
-  
+  &.confirmOrderTitle{
+    width : 100px;
+    font-size : 13px;
+    font-weight : 900;
+    margin : 0;
+  }
 
+  &.customerServiceTitle {
+    font-size : 15px;
+    font-weight : 900;
+    color : #28469C;
+  }
+
+  &.customerServiceContent {
+    font-size : 13px;
+  }
+
+  &.infoFormTitle {
+    font-size : 25px;
+    font-weight : 900;
+    color : #28469C;
+  }
+
+  &.infoFormContent {
+    font-size : 13px;
+    font-weight : 400;
+  }
 `
 
 export { StyledText };
